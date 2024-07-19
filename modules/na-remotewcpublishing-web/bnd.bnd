@@ -1,0 +1,10 @@
+Bundle-Name: na-remotewcpublishing-web
+Bundle-SymbolicName: com.na.remotewc.web
+Bundle-Version: 1.0.0
+Export-Package: com.na.remotewc.web.constants,\
+com.na.remotewc.web.util
+
+
+
+
+  

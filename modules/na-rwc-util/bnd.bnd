@@ -1,0 +1,5 @@
+Bundle-Name: na-rwc-util
+Bundle-SymbolicName: com.na.rwc
+Bundle-Version: 1.0.0
+Export-Package: com.na.rwc.constants,\
+com.na.rwc.util

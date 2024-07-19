@@ -1,0 +1,15 @@
+assemble:
+    - from: build/static
+      into: static
+react-jan11:
+    cssURLs:
+        - css/main.*.css
+    friendlyURLMapping: react-jan11
+    htmlElementName: react-jan11
+    instanceable: false
+    name: React Jan11
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        - js/main.*.js
+    useESM: true

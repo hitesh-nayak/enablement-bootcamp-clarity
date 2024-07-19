@@ -1,0 +1,12 @@
+dependencies {
+	compileOnly project(":modules:na-webContent-remote-REST:na-webContent-remote-REST-api")
+
+	compileOnly project(":modules:na-rwc-util")
+	compileOnly project(":modules:na-remote-webcontent-mvc")
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+	compileInclude group: 'org.json', name: 'json', version: '20230227'
+
+	restBuilder group: "com.liferay", name: "com.liferay.portal.tools.rest.builder", version: "1.0.222"
+}
+
+group = "com.na.webcontent.remote"

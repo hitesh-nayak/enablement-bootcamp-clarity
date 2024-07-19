@@ -1,0 +1,10 @@
+Bundle-Name: custom-obj-service-api
+Bundle-SymbolicName: com.liferay.custom.object.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.custom.object.service.exception,\
+	com.liferay.custom.object.service.model,\
+	com.liferay.custom.object.service.service,\
+	com.liferay.custom.object.service.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../custom-obj-service-service/service.xml

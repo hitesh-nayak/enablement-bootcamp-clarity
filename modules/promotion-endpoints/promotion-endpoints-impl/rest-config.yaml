@@ -1,0 +1,9 @@
+apiDir: "../promotion-endpoints-api/src/main/java"
+apiPackagePath: "promotion.endpoints"
+application:
+    baseURI: "/promotion-endpoints"
+    className: "PromotionEndpointsApplication"
+    name: "PromotionEndpoints"
+author: "me"
+clientDir: "../promotion-endpoints-client/src/main/java"
+testDir: "../promotion-endpoints-test/src/testIntegration/java"

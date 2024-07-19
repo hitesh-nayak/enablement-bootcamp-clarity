@@ -1,0 +1,11 @@
+dependencies {
+	compileOnly project(":modules:custom-obj-service:custom-obj-service-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
+
+buildService {
+	apiDir = "../custom-obj-service-api/src/main/java"
+}
+
+group = "com.liferay.custom.object.service"

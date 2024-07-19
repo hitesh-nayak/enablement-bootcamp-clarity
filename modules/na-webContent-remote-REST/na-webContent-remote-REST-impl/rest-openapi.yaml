@@ -1,0 +1,214 @@
+info:
+    description: "NaWebContentRemoteREST REST API"
+    license:
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    title: "NaWebContentRemoteREST"
+    version: v1.0
+openapi: 3.0.1
+components:
+    schemas:
+        WebContent:
+            description:
+                Retrieves a journal article from the database based on a parameter.
+            properties:
+                  idPK:
+                     description: Unique id of the journal article. PK of JournalArticle table.
+                     format: int64
+                     type: integer
+                  extReferenceCode: 
+                     description: The ext ref code.
+                     type: string
+                  userIdwc: 
+                     description: PK of the wc owner.
+                     format: int64
+                     type: integer
+                  groupIdwc: 
+                     description: aka site ID.
+                     format: int64
+                     type: integer
+                  folderIdwc: 
+                     description: PK of wc article folder.
+                     format: int64
+                     type: integer
+                  classNameIdwc: 
+                     description: PK of DDMStr class IF wc is asscociated.
+                     format: int64
+                     type: integer
+                  classPKwc: 
+                     description: PK of DDMStr IF wc is asscociated.
+                     format: int64
+                     type: integer
+                  articleIdwc:
+                     description: The primary key of the wc article(may be same for diff ver.).
+                     type: string
+                  versionwc:
+                     description: Version of the wc.
+                     format: double
+                     type: number
+                  uuIdwc:
+                     description: The unique uuId string of the wc.
+                     type: string
+                  localePrimarywc:
+                     description: Default locale of the wc.
+                     type: string
+                  localeSecondarywc:
+                     description: Secondary locale of the wc.
+                     type: string
+                  titleLangPrimarywc:
+                     description: Title of wc in default language.
+                     type: string
+                  titleLangSecondarywc:
+                     description: Title of wc in secondary language.
+                     type: string
+                  descLangPrimarywc:
+                     description: Desc of wc in default language.
+                     type: string
+                  descLangSecondarywc:
+                     description: Desc of wc in secondary language.
+                     type: string
+                  fUrlLangPrimarywc:
+                     description: Desc of wc in default language.
+                     type: string
+                  fUrlLangSecondarywc:
+                     description: Desc of wc in secondary language.
+                     type: string
+                  contentPrimarywc:
+                     description: HTML content wrapped in XML.
+                     type: string
+                  contentSecondarywc:
+                     description: HTML content wrapped in XML.
+                     type: string
+                  ddmStructureIDwc:
+                     description: ID of the PK of DDMStr if the wc is assoc. or '0'
+                     format: int64
+                     type: integer
+                  ddmStructureKeywc:
+                     description: Key of the DDMStruc of the wc
+                     type: string
+                  ddmTemplateKeywc:
+                     description: PK of the wc's DDMTemp.
+                     type: string
+                  layoutUuidwc:
+                     description: Unique string of the wc's disp page.
+                     type: string
+                  dispDatewc:
+                     description: Date the wc is set to display.
+                     format: date-time
+                     type: string
+                  defLang:
+                     description: Default Lang of the wc.
+                     type: string
+                  modDatewc:
+                     description: Date the wc was last modified.
+                     format: date-time
+                     type: string
+                  neverReviewwc:
+                     description: Is the wc set to never review.
+                     type: boolean
+                  indexablewc:
+                     description: Is the wc searchable.
+                     type: boolean
+                  smallImagewc:
+                     description: Does the wc have a small image.
+                     type: boolean
+                     
+                  fileEntryIds:
+                     description: Ids of associated files.
+                     type: array
+                     items:
+                       format: int64
+                       type: integer
+                  imagesB64Encoded:
+                     description: Images in Base64.
+                     type: array
+                     items:
+                       format: byte
+                       type: string
+                  fileClassNameId:
+                     description: cnid of the content the files are assoc. with.
+                     format: int64
+                     type: integer
+                  fileClassNamePk:
+                     description: resprimkey of the web-content the files are assoc. with.
+                     format: int64
+                     type: integer
+                  fileEntryUuids:
+                     description: fileEntry uuids.
+                     type: array
+                     items:
+                       type: string
+                  fileNames:
+                     description: file names.
+                     type: array
+                     items:
+                       type: string
+                  fileTitles:
+                     description: file titles.
+                     type: array
+                     items:
+                       type: string
+                  fileMimes:
+                     description: file mime types.
+                     type: array
+                     items:
+                       type: string
+                  fileDescs:
+                     description: file descs.
+                     type: array
+                     items:
+                       type: string
+                  
+                  
+            type: object
+paths:
+    "/webContent":
+        post:
+            description: 
+                    Post a webcontent.
+            operationId: postWebContent
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/WebContent"
+                    
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/WebContent"
+                    
+            responses:
+                200:
+                    description: success!
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/WebContent"
+                        
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/WebContent"
+                        
+            tags: ["WebContent"]
+    "/webContent/{articleId}":
+        get:
+            operationId: getWebContent
+            parameters:
+                - in: path
+                  name: articleId
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                200:
+                    description: success!
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/WebContent"
+                        
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/WebContent"
+                        
+            tags: ["WebContent"]

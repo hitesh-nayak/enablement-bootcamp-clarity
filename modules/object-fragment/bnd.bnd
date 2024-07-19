@@ -1,0 +1,5 @@
+Bundle-Name: object-fragment
+Bundle-SymbolicName: com.liferay.object.web.fragment
+Bundle-Version: 1.0.0
+Fragment-Host: com.liferay.object.web;bundle-version="1.0.180"
+Portal-Bundle-Version: 7.4.13

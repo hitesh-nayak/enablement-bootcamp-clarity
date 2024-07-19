@@ -1,0 +1,6 @@
+Bundle-Name: na-remotewcpublishing-REST-api
+Bundle-SymbolicName: com.na.remotewc.headless.rest.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.na.remotewc.headless.rest.dto.v1_0,\
+	com.na.remotewc.headless.rest.resource.v1_0

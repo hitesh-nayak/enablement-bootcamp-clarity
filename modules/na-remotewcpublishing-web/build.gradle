@@ -1,0 +1,12 @@
+dependencies {
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+	compileOnly project(":modules:na-remotewcpublishing-REST:na-remotewcpublishing-REST-api")
+	//compileInclude group: "com.mashape.unirest", name: "unirest-java", version: "1.4.9"
+	
+    //compileInclude group: "com.squareup.okhttp3", name: "okhttp", version: "4.10.0"
+	
+	compileInclude group: "commons-io", name: "commons-io", version: "2.11.0"
+	compileInclude group: "org.json", name: "json", version: "20230227"
+	compileOnly project(":modules:na-emailconfiguration-settings")
+	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "3.1.0"
+}

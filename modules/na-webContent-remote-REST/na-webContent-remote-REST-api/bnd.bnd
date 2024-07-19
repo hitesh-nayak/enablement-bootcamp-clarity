@@ -1,0 +1,6 @@
+Bundle-Name: na-webContent-remote-REST-api
+Bundle-SymbolicName: com.na.webcontent.remote.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.na.webcontent.remote.dto.v1_0,\
+	com.na.webcontent.remote.resource.v1_0

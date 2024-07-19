@@ -1,0 +1,4 @@
+Bundle-Name: na-remotewcpublishing-panel74
+Bundle-SymbolicName: com.na.remote.wc.publish
+Bundle-Version: 1.0.0
+Export-Package: com.na.remote.wc.publish.constants

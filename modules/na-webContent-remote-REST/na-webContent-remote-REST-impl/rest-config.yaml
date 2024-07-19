@@ -1,0 +1,9 @@
+apiDir: "../na-webContent-remote-REST-api/src/main/java"
+apiPackagePath: "com.na.webcontent.remote"
+application:
+    baseURI: "/na-webContent-remote-REST"
+    className: "NaWebContentRemoteRESTApplication"
+    name: "NaWebContentRemoteREST"
+author: "untodawn035"
+clientDir: "../na-webContent-remote-REST-client/src/main/java"
+testDir: "../na-webContent-remote-REST-test/src/testIntegration/java"

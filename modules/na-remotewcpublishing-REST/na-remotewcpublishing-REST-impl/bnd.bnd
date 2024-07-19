@@ -1,0 +1,3 @@
+Bundle-Name: na-remotewcpublishing-REST-impl
+Bundle-SymbolicName: com.na.remotewc.headless.rest.impl
+Bundle-Version: 1.0.0

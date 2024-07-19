@@ -1,0 +1,7 @@
+Bundle-Name: promotion-endpoints-api
+Bundle-SymbolicName: promotion.endpoints.api
+Bundle-Version: 1.0.0
+Import-Package: *;resolution:="optional"
+Export-Package:\
+	promotion.endpoints.dto.v1_0,\
+	promotion.endpoints.resource.v1_0

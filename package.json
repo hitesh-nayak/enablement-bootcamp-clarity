@@ -2,7 +2,9 @@
     "private": true,
     "workspaces": {
         "packages": [
-            "client-extensions/liferay-clarity-theme-css"
+            "client-extensions/liferay-clarity-theme-css",
+            "client-extensions/react-jan11",
+            "client-extensions/react-intern-crud"
         ]
     }
 }

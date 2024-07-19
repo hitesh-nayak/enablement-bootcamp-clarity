@@ -1,0 +1,5 @@
+Bundle-Name: blogs
+Bundle-SymbolicName: blogs
+Bundle-Version: 1.0.0
+Fragment-Host: com.liferay.blogs.web;bundle-version="6.0.106"
+Portal-Bundle-Version: 7.4.13

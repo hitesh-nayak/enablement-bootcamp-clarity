@@ -1,0 +1,9 @@
+apiDir: "../na-remotewcpublishing-REST-api/src/main/java"
+apiPackagePath: "com.na.remotewc.headless.rest"
+application:
+    baseURI: "/na-remotewcpublishing-REST"
+    className: "NaRemotewcpublishingRESTApplication"
+    name: "NaRemotewcpublishingREST"
+author: "untodawn035"
+clientDir: "../na-remotewcpublishing-REST-client/src/main/java"
+testDir: "../na-remotewcpublishing-REST-test/src/testIntegration/java"

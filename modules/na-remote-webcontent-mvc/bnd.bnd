@@ -1,0 +1,4 @@
+Bundle-Name: na-remote-webcontent-mvc
+Bundle-SymbolicName: com.na.remote.webcontent.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.na.remote.webcontent.portlet.constants

@@ -1,0 +1,3 @@
+Bundle-Name: promotion-endpoints-impl
+Bundle-SymbolicName: promotion.endpoints.impl
+Bundle-Version: 1.0.0

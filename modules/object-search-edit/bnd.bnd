@@ -1,0 +1,4 @@
+Bundle-Name: object-search-edit
+Bundle-SymbolicName: com.liferay.custom.object
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.custom.object.constants

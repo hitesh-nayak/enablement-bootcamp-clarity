@@ -1,0 +1,10 @@
+dependencies {
+	compileOnly project(":modules:na-remotewcpublishing-REST:na-remotewcpublishing-REST-api")
+	compileOnly project(":modules:na-remotewcpublishing-web")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+
+	restBuilder group: "com.liferay", name: "com.liferay.portal.tools.rest.builder", version: "1.0.222"
+}
+
+group = "com.na.remotewc.headless.rest"

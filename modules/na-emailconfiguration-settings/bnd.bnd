@@ -1,0 +1,6 @@
+Bundle-Name: na-emailconfiguration-settings
+Bundle-SymbolicName: com.na.email.configuration
+Bundle-Version: 1.0.0
+Export-Package: com.na.email.configuration.constants,\
+com.na.email.commoncofig,\
+com.na.email.commonconfig.component
