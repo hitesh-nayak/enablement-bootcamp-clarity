@@ -1,0 +1,19 @@
+assemble:
+    - from: batch
+      into: batch
+digitus-object-batch:
+    name: Digitus Object Batch
+    oAuthApplicationHeadlessServer: digitus-batch-oauth-application-headless-server
+    type: batch
+digitus-batch-oauth-application-headless-server:
+    .serviceAddress: localhost:8081
+    .serviceScheme: http
+    name: Digitus Batch OAuth Application Headless Server
+    scopes:
+        - Liferay.Headless.Admin.List.Type.everything
+        - Liferay.Headless.Admin.User.everything
+        - Liferay.Headless.Admin.Workflow.everything
+        - Liferay.Headless.Batch.Engine.everything
+        - Liferay.Notification.REST.everything
+        - Liferay.Object.Admin.REST.everything
+    type: oAuthApplicationHeadlessServer

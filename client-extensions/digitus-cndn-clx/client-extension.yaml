@@ -1,0 +1,15 @@
+assemble:
+    - from: build/static
+      into: static
+digitus-cndn-clx:
+    cssURLs:
+        - css/main.*.css
+    friendlyURLMapping: digitus-cndn-clx
+    htmlElementName: digitus-cndn-clx
+    instanceable: false
+    name: Digitus CNDN Application
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        - js/main.*.js
+    useESM: true

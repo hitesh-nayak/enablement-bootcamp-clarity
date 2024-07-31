@@ -4,7 +4,8 @@
         "packages": [
             "client-extensions/liferay-clarity-theme-css",
             "client-extensions/react-jan11",
-            "client-extensions/react-intern-crud"
+            "client-extensions/react-intern-crud",
+            "client-extensions/digitus-cndn-clx"
         ]
     }
 }

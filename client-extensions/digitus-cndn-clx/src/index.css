@@ -1,0 +1,16 @@
+.digitus-container{
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    box-shadow: 5px 10px 18px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+
+}
+
+.digitus-padded-div{
+    padding-top: 1rem;
+}
+
+.modal-dialog{
+    max-width: 1200px;
+}
