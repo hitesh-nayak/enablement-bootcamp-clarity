@@ -1,0 +1,57 @@
+{
+  "actions": {
+    "permissions": {
+      "method": "GET",
+      "href": "http://localhost:8082/o/c/cndnattachments/33294/permissions"
+    },
+    "get": {
+      "method": "GET",
+      "href": "http://localhost:8082/o/c/cndnattachments/33294"
+    },
+    "replace": {
+      "method": "PUT",
+      "href": "http://localhost:8082/o/c/cndnattachments/33294"
+    },
+    "update": {
+      "method": "PATCH",
+      "href": "http://localhost:8082/o/c/cndnattachments/33294"
+    },
+    "delete": {
+      "method": "DELETE",
+      "href": "http://localhost:8082/o/c/cndnattachments/33294"
+    }
+  },
+  "creator": {
+    "additionalName": "",
+    "contentType": "UserAccount",
+    "familyName": "Test",
+    "givenName": "Test",
+    "id": 20122,
+    "name": "Test Test"
+  },
+  "dateCreated": "2024-08-02T10:44:40Z",
+  "dateModified": "2024-08-02T10:44:54Z",
+  "externalReferenceCode": "481fa66c-e985-b9a7-45ca-09e2f3375c94",
+  "id": 33294,
+  "keywords": [],
+  "status": {
+    "code": 0,
+    "label": "approved",
+    "label_i18n": "Approved"
+  },
+  "taxonomyCategoryBriefs": [],
+  "r_itemattachment_c_creditDebitItemId": 0,
+  "r_noteattachment_c_creditDebitNoteId": 0,
+  "itemattachmentERC": "",
+  "attachment": {
+    "id": 33252,
+    "link": {
+      "href": "/documents/20119/0/consofcontacts.jpeg/b3fa9faf-093c-e990-0cb8-24b13c8972af?version=1.0&t=1722595355732&download=true&objectDefinitionExternalReferenceCode=8b96c7c6-5565-fe92-d110-fc7227c527f8&objectEntryExternalReferenceCode=481fa66c-e985-b9a7-45ca-09e2f3375c94",
+      "label": "consofcontacts.jpeg"
+    },
+    "name": "consofcontacts.jpeg"
+  },
+  "r_itemattachment_c_creditDebitItemERC": "",
+  "noteattachmentERC": "",
+  "r_noteattachment_c_creditDebitNoteERC": ""
+}

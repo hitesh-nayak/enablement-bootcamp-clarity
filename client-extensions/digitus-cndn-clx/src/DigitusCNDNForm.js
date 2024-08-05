@@ -1,4 +1,4 @@
-import {getDept} from "./getCNDNFormData";
+import {getDept, getVerificationBy} from "./getCNDNFormData";
 import {getVoucherType} from "./getCNDNFormData";
 import {getCustomerName} from "./getCNDNFormData";
 import {getRequestor} from "./getCNDNFormData";
@@ -10,7 +10,14 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import ContainerDivMD6 from "./ContainerDivMD6";
 import ContainerDivMD4 from "./ContainerDivMD4";
 import {Modal, Button} from "react-bootstrap";
-
+import {
+    createAttachments,
+    saveAttachments,
+    saveCNDNItems,
+    saveCNDNNote,
+    saveDraftcndnApplication
+} from "./postCNDNFormData";
+import {generateRandomString, getRenamedFile} from "./DigitusUtil";
 
 
 const DigitusCNDNForm = () => {
@@ -23,12 +30,10 @@ const DigitusCNDNForm = () => {
     const [voucherTypeValue, setVoucherTypeValue] = useState("");
     const [voucherTypeMap, setVoucherTypeMap] = useState([]);
     const getVoucherTypeMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setVoucherTypeMap([1, 2, 3, 4, 5, 6]);
+        getVoucherType().then(function (json) {
+            setVoucherTypeMap(json.items);
+        })
+        //setVoucherTypeMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getVoucherTypeMap();
@@ -41,12 +46,12 @@ const DigitusCNDNForm = () => {
     const [requestorValue, setRequestorValue] = useState("");
     const [requestorMap, setRequestorMap] = useState([]);
     const getRequestorMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setRequestorMap([1, 2, 3, 4, 5, 6]);
+        getRequestor().then(function (json) {
+
+            setRequestorMap(json.items);
+
+        })
+        //setRequestorMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getRequestorMap();
@@ -56,12 +61,12 @@ const DigitusCNDNForm = () => {
     const [deptValue, setDeptValue] = useState("");
     const [deptMap, setDeptMap] = useState([]);
     const getDeptMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setDeptMap([1, 2, 3, 4, 5, 6]);
+        getDept().then(function (json) {
+
+            setDeptMap(json.items);
+
+        })
+        //setDeptMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getDeptMap();
@@ -71,30 +76,43 @@ const DigitusCNDNForm = () => {
     const [custNameValue, setCustNameValue] = useState("");
     const [custNameMap, setCustNameMap] = useState([]);
     const getCustNameMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setCustNameMap([1, 2, 3, 4, 5, 6]);
+        getCustomerName().then(function (json) {
+
+            setCustNameMap(json.items);
+
+        })
+        //setCustNameMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getCustNameMap();
     }, [])
 
+
     let custCodeRef = useRef(null);
     const [custCodeValue, setCustCodeValue] = useState("");
+
+    function handleCustomerNameChange(event) {
+
+        let custName = event.target.value;
+        custNameMap.forEach(customer => {
+            if (customer.id == custName) {
+                setCustCodeValue(customer.customerCode);
+                setCustNameValue(customer.customerName);
+            }
+        })
+
+    }
 
     let currencyRef = useRef(null);
     const [currencyValue, setCurrencyValue] = useState("");
     const [currencyValueMap, setCurrencyValueMap] = useState([]);
     const getCurrencyValueMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setCurrencyValueMap([1, 2, 3, 4, 5, 6]);
+        getCurrency().then(function (json) {
+
+            setCurrencyValueMap(json.items);
+
+        })
+        //setCurrencyValueMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getCurrencyValueMap();
@@ -105,12 +123,12 @@ const DigitusCNDNForm = () => {
     const [reasonValue, setReasonValue] = useState("");
     const [reasonValueMap, setReasonValueMap] = useState([]);
     const getReasonValueMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setReasonValueMap([1, 2, 3, 4, 5, 6]);
+        getReason().then(function (json) {
+
+            setReasonValueMap(json.items);
+
+        })
+        //setReasonValueMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getReasonValueMap();
@@ -124,12 +142,12 @@ const DigitusCNDNForm = () => {
     const [verificationByValue, setVerificationByValue] = useState("");
     const [verificationByValueMap, setVerificationByValueMap] = useState([]);
     const getVerificationByValueMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setVerificationByValueMap([1, 2, 3, 4, 5, 6]);
+        getVerificationBy().then(function (json) {
+
+            setVerificationByValueMap(json.items);
+
+        })
+        //setVerificationByValueMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getVerificationByValueMap();
@@ -200,12 +218,12 @@ const DigitusCNDNForm = () => {
     const [categoryValue, setCategoryValue] = useState("");
     const [categoryValueMap, setCategoryValueMap] = useState([]);
     const getCategoryValueMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setCategoryValueMap([1, 2, 3, 4, 5, 6]);
+        getDept().then(function (json) {
+
+            setCategoryValueMap(json.items);
+
+        })
+        //setCategoryValueMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getCategoryValueMap();
@@ -222,24 +240,47 @@ const DigitusCNDNForm = () => {
 
     let itemNoRef = useRef(null);
     const [itemNoValue, setItemNoValue] = useState("");
+
     let invoiceNoRef = useRef(null);
     const [invoiceNoValue, setInvoiceNoValue] = useState("");
+
     let invoiceDateRef = useRef(null);
     const [invoiceDateValue, setInvoiceDateValue] = useState("");
+
     let quantityRef = useRef(null);
     const [quantityValue, setQuantityValue] = useState("");
+
     let unitPriceRef = useRef(null);
     const [unitPriceValue, setUnitPriceValue] = useState("");
+
+    function handlePriceChange(event) {
+        setUnitPriceValue(event.target.value);
+        if (quantityValue && unitPriceValue) {
+            setTotalPriceValue(JSON.stringify(Number(unitPriceValue) * Number(quantityValue)));
+        }
+    }
+
     let totalPriceRef = useRef(null);
     const [totalPriceValue, setTotalPriceValue] = useState("");
+
     let remarksRef = useRef(null);
     const [remarksValue, setRemarksValue] = useState("");
+
     let cndnItemAttachmentsRef = useRef(null);
     const [cndnItemAttachmentsValue, setCndnItemAttachmentsValue] = useState([]);
 
-    let csaItems = [];
-    let isItems = [];
+    const [csaItemsMap, setCsaItemsMap] = useState([]);
+    const [isItemsMap, setIsItemsMap] = useState([]);
+    const [cndnEntity, setCndnEntity] = useState({});
 
+    // const [itemFileEntriesMap, setItemFileEntriesMap] = useState([]);
+    // const [noteFileEntriesMap, setNoteFileEntriesMap] = useState([]);
+    // const [itemFileAttachmentsMap, setItemFileAttachmentsMap] = useState([]);
+    // const [noteFileAttachmentsMap, setNoteFileAttachmentsMap] = useState([]);
+
+
+    let docNumberRef = useRef(null);
+    const [docNumberValue, setDocNumberValue] = useState("");
 
     let csaItemButtonRef = useRef(null);
     const [csaItemModalValue, setCsaItemModalValue] = useState(false);
@@ -252,19 +293,204 @@ const DigitusCNDNForm = () => {
 
     const handleCNDNSubmission = (e) => {
         e.preventDefault();
-        let formData = new FormData();
-        formData.append('rootCategory', selectedValueRoot);
-        formData.append('firstCategory', selectedValueFirst);
-        formData.append('secondCategory', selectedValueSecond);
-        formData.append('thirdCategory', selectedValueThird);
-        formData.append('fourthCategory', selectedValueFourth);
-        validatePromotionCategory(formData).then(function (json) {
-            console.log("isValid? " + JSON.stringify(json));
 
-        })
+        handleFiles(cndnNoteAttachmentsValue).then(function (resolve) {
+            // resolve.forEach((resolveItem) => {
+            //     let noteAttachment = {}
+            //     noteAttachment.id = resolveItem;
+            //     noteAttachmentsArray.push(noteAttachment);
+            // })
+            console.log(resolve);
+            let cndnNote = {...cndnEntity};
+            cndnNote.noteattachment = resolve;
+            cndnNote.noteitem = csaItemsMap;
+            setCndnEntity(cndnNote);
+
+            // saveCNDNNote(cndnNote).then((res) => {
+            //     console.log(res);
+            // });
+        });
+
 
     }
 
+    async function handleFiles(files) {
+        return new Promise((resolve, reject) => {
+            let cndnAttachments = [];
+            if (files.length > 0) {
+                const promises = files.map(itemAttachment => {
+                    let body = new FormData();
+                    let newName = generateRandomString(10) + itemAttachment.name;
+                    body.append('file', getRenamedFile(itemAttachment, newName));
+                    return saveAttachments(body).then(json => {
+                        let attachment = {}
+                        attachment.attachment = {"id": json.id}
+                        createAttachments(JSON.stringify(attachment)).then((json) => {
+                            delete json['actions'];
+                            delete json['creator'];
+                            delete json['dateCreated'];
+                            delete json['dateModified'];
+                            //cndnAttachments.push(JSON.stringify(json));
+                            cndnAttachments.push(json);
+                        })
+                    });
+                });
+
+                Promise.all(promises)
+                    .then(() => {
+                        resolve(cndnAttachments);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            } else {
+                resolve(cndnAttachments);
+            }
+        });
+    }
+
+
+    function handleItemSave() {
+        setCsaItemModalValue(false);
+        setTotalPriceValue(JSON.stringify(Number(unitPriceValue) * Number(quantityValue)));
+
+        let itemCategory = categoryValue;
+        let itemDescription = itemDescriptionValue;
+        let itemCustomerPartNo = customerPartValue;
+        let itemCustomerPONo = customerPONoValue;
+        let itemNo = itemNoValue;
+        let itemInvoiceNo = invoiceNoValue;
+        let itemInvoiceDate = invoiceDateValue;
+        let itemQuantity = quantityValue;
+        let itemUnitPrice = unitPriceValue;
+        let itemTotalPrice = totalPriceValue;
+        let itemRemarks = remarksValue;
+        let itemAttachments = [...cndnItemAttachmentsValue];
+
+        handleFiles(itemAttachments).then(function (resolve) {
+            // resolve.forEach((resolveItem) => {
+            //     let itemAttachment = {}
+            //     itemAttachment.id = resolveItem;
+            //     itemAttachmentsArray.push(itemAttachment);
+            // })
+            if (deptValue === "cndncsadept") {
+                let modCsaMap = [...csaItemsMap];
+                let csaItem = {};
+                if (itemCategory) csaItem.category = itemCategory;
+                if (itemDescription) csaItem.description = itemDescription;
+                if (itemCustomerPartNo) csaItem.customerPartNumber = itemCustomerPartNo;
+                if (itemCustomerPONo) csaItem.customerPONumber = itemCustomerPONo;
+                if (itemNo) csaItem.itemNumber = itemNo;
+                if (itemInvoiceNo) csaItem.invoiceNumber = itemInvoiceNo;
+                if (itemInvoiceDate) csaItem.invoiceDate = itemInvoiceDate;
+                if (itemQuantity) csaItem.quantity = itemQuantity;
+                if (itemUnitPrice) csaItem.unitPrice = itemUnitPrice;
+                if (itemTotalPrice) csaItem.totalPrice = itemTotalPrice;
+                if (itemRemarks) csaItem.remarks = itemRemarks;
+                csaItem.itemattachment = JSON.stringify(resolve);
+                console.log(csaItem);
+                saveCNDNItems(JSON.stringify(csaItem)).then(function (resolve) {
+                    modCsaMap.push(resolve);
+                    setCsaItemsMap(modCsaMap);
+                });
+
+            }
+        });
+
+
+    }
+
+
+    function handleInitialSave() {
+        let testJson = {
+            //Mandatory fields only
+            "creationDate": "2024-08-16",
+            "currency": {
+                "key": "cndnsgd",
+                "name": "SGD"
+            },
+            "dept": {
+                "key": "cndnisdept",
+                "name": "IS"
+            },
+            "requestor": "20122",
+            "voucherType": {
+                "key": "cndncredit",
+                "name": "Credit"
+            },
+            "customerCode": "SONY3444",
+            "customerName": "Sony",
+            "approvalStatus": {
+                "key": "draft",
+                "name": "Draft"
+            }
+        }
+
+        let requestBody = {};
+        let currencyPicklist = {};
+        let deptPicklist = {};
+        let voucherPicklist = {};
+        let approvalStatus = {
+            "key": "draft",
+            "name": "Draft"
+        }
+        if (creationDateValue) requestBody.creationDate = creationDateValue;
+        if (currencyValue) {
+            let currencyName = "";
+            currencyValueMap.forEach(curr => {
+                if (curr.key == currencyValue) currencyName = curr.name;
+            })
+            if (currencyName) {
+                currencyPicklist.key = currencyValue;
+                currencyPicklist.name = currencyName;
+            }
+        }
+        if (deptValue) {
+            let deptName = "";
+            deptMap.forEach(dept => {
+                if (dept.key == deptValue) deptName = dept.name;
+            })
+            if (deptName) {
+                deptPicklist.key = deptValue;
+                deptPicklist.name = deptName;
+            }
+        }
+        if (voucherTypeValue) {
+            let voucherName = "";
+            voucherTypeMap.forEach(voucher => {
+                if (voucher.key == voucherTypeValue) voucherName = voucher.name;
+            })
+            if (voucherName) {
+                voucherPicklist.key = voucherTypeValue;
+                voucherPicklist.name = voucherName;
+            }
+        }
+        if (currencyPicklist) requestBody.currency = currencyPicklist;
+        if (deptPicklist) requestBody.dept = deptPicklist;
+        if (requestorValue) requestBody.requestor = requestorValue;
+        if (voucherTypeValue) requestBody.voucherType = voucherPicklist;
+        if (custCodeValue) requestBody.customerCode = custCodeValue;
+        if (custNameValue) requestBody.customerName = custNameValue;
+        requestBody.approvalStatus = approvalStatus;
+
+        console.log(requestBody);
+
+        saveDraftcndnApplication(JSON.stringify(requestBody)).then(function (json) {
+            if (json.id) {
+                if (voucherTypeValue === "cndndebit") {
+                    setDocNumberValue("DN" + json.id);
+                    json.documentNumber = "DN" + json.id;
+                    setCndnEntity(json);
+                }
+                if (voucherTypeValue === "cndncredit") {
+                    setDocNumberValue("CN" + json.id);
+                    json.documentNumber = "CN" + json.id;
+                    setCndnEntity(json);
+                }
+            }
+        });
+
+    }
 
     return (<form className={"row g-3"} id="categoryForm" action="" onSubmit={handleCNDNSubmission}>
             <h4>AR Debit/Credit Adjustment Request Form</h4>
@@ -276,10 +502,8 @@ const DigitusCNDNForm = () => {
                         value={voucherTypeValue}
                         onChange={(event) => setVoucherTypeValue(event.target.value)}>
                     <option value={defaultSelectValue}>{defaultSelectOption}</option>
-                    <option value="cndncredit">Credit</option>
-                    <option value="cndndebit">Debit</option>
                     {voucherTypeMap.map(voucher => {
-                        return <option key={voucher}
+                        return <option key={voucher.key}
                                        value={voucher.key}>{voucher.name}</option>
                     })}
                 </select>
@@ -294,7 +518,6 @@ const DigitusCNDNForm = () => {
 
             </ContainerDivMD6>
 
-
             <ContainerDivMD6>
                 <label className="form-label">
                     Requestor
@@ -303,8 +526,8 @@ const DigitusCNDNForm = () => {
                         onChange={(event) => setRequestorValue(event.target.value)}>
                     <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
                     {requestorMap.map(requestor => {
-                        return <option key={requestor.key}
-                                       value={requestor.key}>{requestor.name}</option>
+                        return <option key={requestor.id}
+                                       value={requestor.id}>{requestor.name}</option>
                     })}
                 </select>
             </ContainerDivMD6>
@@ -315,8 +538,6 @@ const DigitusCNDNForm = () => {
                 <select className="form-select" ref={deptRef} name="Dept" value={deptValue}
                         onChange={(event) => setDeptValue(event.target.value)}>
                     <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
-                    <option value="cndnisdept">IS</option>
-                    <option value="cndncsadept">CSA</option>
                     {deptMap.map(dept => {
                         return <option key={dept.key}
                                        value={dept.key}>{dept.name}</option>
@@ -329,11 +550,11 @@ const DigitusCNDNForm = () => {
                     Customer Name
                 </label>
                 <select className="form-select" ref={custNameRef} name="Customer Name" value={custNameValue}
-                        onChange={(event) => setCustNameValue(event.target.value)}>
+                        onChange={(event) => handleCustomerNameChange(event)}>
                     <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
                     {custNameMap.map(customer => {
-                        return <option key={customer.key}
-                                       value={customer.key}>{customer.name}</option>
+                        return <option key={customer.id}
+                                       value={customer.id}>{customer.customerName}</option>
                     })}
                 </select>
             </ContainerDivMD6>
@@ -358,6 +579,20 @@ const DigitusCNDNForm = () => {
                     })}
                 </select>
             </ContainerDivMD6>
+            <ContainerDivMD6>
+                <label className="form-label">
+                    Document Number
+                </label>
+                <input className="form-control" ref={docNumberRef} type="text" readOnly={true} name="Customer Code"
+                       value={docNumberValue}
+                       onChange={event => setDocNumberValue(event.target.value)}/>
+            </ContainerDivMD6>
+
+            <div className="col-12">
+                <button className="btn btn-primary" id={"draftButton"} type={"button"} onClick={handleInitialSave}>Save
+                    Draft
+                </button>
+            </div>
 
             {(deptValue && deptValue === "cndncsadept") &&
                 <>
@@ -386,7 +621,7 @@ const DigitusCNDNForm = () => {
                                                         selected={true}>{defaultSelectOption}</option>
                                                 {categoryValueMap.map(cat => {
                                                     return <option key={cat.key}
-                                                                   value={cat.key}>{cat.name}</option>
+                                                                   value={cat.name}>{cat.name}</option>
                                                 })}
                                             </select>
                                         </ContainerDivMD6>
@@ -469,7 +704,7 @@ const DigitusCNDNForm = () => {
                                             <input className="form-control" ref={unitPriceRef} type="number"
                                                    name="Unit Price"
                                                    value={unitPriceValue}
-                                                   onChange={event => setUnitPriceValue(event.target.value)}/>
+                                                   onChange={event => handlePriceChange(event)}/>
                                         </ContainerDivMD6>
                                         <ContainerDivMD6>
                                             <label className="form-label">
@@ -478,6 +713,7 @@ const DigitusCNDNForm = () => {
                                             <input className="form-control" ref={totalPriceRef} type="number"
                                                    name="Total Price"
                                                    value={totalPriceValue}
+                                                   readOnly={true}
                                                    onChange={event => setTotalPriceValue(event.target.value)}/>
                                         </ContainerDivMD6>
                                     </div>
@@ -486,7 +722,7 @@ const DigitusCNDNForm = () => {
                                             <label className="form-label">
                                                 Remarks
                                             </label>
-                                            <input className="form-control" ref={remarksRef} type="number"
+                                            <input className="form-control" ref={remarksRef} type="text"
                                                    name="Item Remarks"
                                                    value={remarksValue}
                                                    onChange={event => setRemarksValue(event.target.value)}/>
@@ -507,7 +743,7 @@ const DigitusCNDNForm = () => {
                                     <Button variant="secondary" onClick={csaModalClose}>
                                         Close
                                     </Button>
-                                    <Button variant="primary" onClick={csaModalClose}>
+                                    <Button variant="primary" onClick={handleItemSave}>
                                         Save
                                     </Button>
                                 </Modal.Footer>
@@ -530,6 +766,19 @@ const DigitusCNDNForm = () => {
                             </tr>
                             </thead>
                             <tbody>
+                            {csaItemsMap.map((item, index) => (
+                                <tr key={index}>
+                                    <td><input type={"checkbox"}/></td>
+                                    <td>{item.itemNumber}</td>
+                                    <td>{item.customerPartNumber}</td>
+                                    <td>{item.customerPONumber}</td>
+                                    <td>{item.invoiceNumber}</td>
+                                    <td>{item.invoiceDate}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>{item.unitPrice}</td>
+                                    <td>{item.totalPrice}</td>
+                                </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>
@@ -541,7 +790,6 @@ const DigitusCNDNForm = () => {
                         <select className="form-select" ref={reasonRef} name="Reason" value={reasonValue}
                                 onChange={(event) => setReasonValue(event.target.value)}>
                             <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
-                            <option value="others">Others</option>
                             {reasonValueMap.map(reason => {
                                 return <option key={reason.key}
                                                value={reason.key}>{reason.name}</option>
@@ -571,8 +819,8 @@ const DigitusCNDNForm = () => {
                                 onChange={(event) => setVerificationByValue(event.target.value)}>
                             <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
                             {verificationByValueMap.map(verBy => {
-                                return <option key={verBy.key}
-                                               value={verBy.key}>{verBy.name}</option>
+                                return <option key={verBy.id}
+                                               value={verBy.id}>{verBy.name}</option>
                             })}
                         </select>
                     </ContainerDivMD6>
@@ -685,7 +933,8 @@ const DigitusCNDNForm = () => {
                     </div>
                     {isItemModalValue &&
                         <>
-                            <Modal className={"modal-width"} show={isItemModalValue} onHide={isModalClose} centered={true}>
+                            <Modal className={"modal-width"} show={isItemModalValue} onHide={isModalClose}
+                                   centered={true}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Add new IS item</Modal.Title>
                                 </Modal.Header>
