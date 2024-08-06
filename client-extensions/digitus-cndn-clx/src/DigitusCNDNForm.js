@@ -5,7 +5,6 @@ import {getRequestor} from "./getCNDNFormData";
 import {getReason} from "./getCNDNFormData";
 import {getCurrency} from "./getCNDNFormData";
 import React, {useEffect, useRef, useState} from "react";
-import {validatePromotionCategory} from "./validatePromotionCategory";
 import "bootstrap/dist/css/bootstrap.min.css"
 import ContainerDivMD6 from "./ContainerDivMD6";
 import ContainerDivMD4 from "./ContainerDivMD4";
@@ -14,8 +13,7 @@ import {
     createAttachments,
     saveAttachments,
     saveCNDNItems,
-    saveCNDNNote,
-    saveDraftcndnApplication
+    saveDraftcndnApplication, updateCNDNNote
 } from "./postCNDNFormData";
 import {generateRandomString, getRenamedFile} from "./DigitusUtil";
 
@@ -33,7 +31,6 @@ const DigitusCNDNForm = () => {
         getVoucherType().then(function (json) {
             setVoucherTypeMap(json.items);
         })
-        //setVoucherTypeMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getVoucherTypeMap();
@@ -51,7 +48,6 @@ const DigitusCNDNForm = () => {
             setRequestorMap(json.items);
 
         })
-        //setRequestorMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getRequestorMap();
@@ -66,7 +62,6 @@ const DigitusCNDNForm = () => {
             setDeptMap(json.items);
 
         })
-        //setDeptMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getDeptMap();
@@ -81,7 +76,6 @@ const DigitusCNDNForm = () => {
             setCustNameMap(json.items);
 
         })
-        //setCustNameMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getCustNameMap();
@@ -93,11 +87,15 @@ const DigitusCNDNForm = () => {
 
     function handleCustomerNameChange(event) {
 
-        let custName = event.target.value;
+        let custId = event.target.value;
         custNameMap.forEach(customer => {
-            if (customer.id == custName) {
+            if (customer.id === Number(custId)) {
                 setCustCodeValue(customer.customerCode);
-                setCustNameValue(customer.customerName);
+                setCustNameValue(customer.id);
+
+                setSalesDirectorValue(customer.salesDirectorUserId);
+                setFinanceControlValue(customer.financeControllerUserId);
+                setGeneralManagerValue(customer.generalManagerUserId);
             }
         })
 
@@ -112,7 +110,6 @@ const DigitusCNDNForm = () => {
             setCurrencyValueMap(json.items);
 
         })
-        //setCurrencyValueMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getCurrencyValueMap();
@@ -128,7 +125,6 @@ const DigitusCNDNForm = () => {
             setReasonValueMap(json.items);
 
         })
-        //setReasonValueMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getReasonValueMap();
@@ -147,7 +143,6 @@ const DigitusCNDNForm = () => {
             setVerificationByValueMap(json.items);
 
         })
-        //setVerificationByValueMap([1, 2, 3, 4, 5, 6]);
     }
     useEffect(() => {
         getVerificationByValueMap();
@@ -160,12 +155,12 @@ const DigitusCNDNForm = () => {
     const [salesDirectorValue, setSalesDirectorValue] = useState("");
     const [salesDirectorValueMap, setSalesDirectorValueMap] = useState([]);
     const getSalesDirectorValueMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setSalesDirectorValueMap([1, 2, 3, 4, 5, 6]);
+        getCustomerName().then(function (json) {
+
+            setSalesDirectorValueMap(json.items);
+
+        })
+
     }
     useEffect(() => {
         getSalesDirectorValueMap();
@@ -174,28 +169,28 @@ const DigitusCNDNForm = () => {
     let financeControllerRef = useRef(null);
     const [financeControllerValue, setFinanceControlValue] = useState("");
     const [financeControllerValueMap, setFinanceControllerValueMap] = useState([]);
-    const getfinanceControllerValueMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setFinanceControllerValueMap([1, 2, 3, 4, 5, 6]);
+    const getFinanceControllerValueMap = () => {
+        getCustomerName().then(function (json) {
+
+            setFinanceControllerValueMap(json.items);
+
+        })
+
     }
     useEffect(() => {
-        getfinanceControllerValueMap();
+        getFinanceControllerValueMap();
     }, [])
 
     let generalManagerRef = useRef(null);
     const [generalManagerValue, setGeneralManagerValue] = useState("");
     const [generalManagerValueMap, setGeneralManagerValueMap] = useState([]);
     const getGeneralManagerValueMap = () => {
-        // getVoucherType().then(function (json) {
-        //
-        //     setVoucherTypeMap(json.items);
-        //
-        // })
-        setGeneralManagerValueMap([1, 2, 3, 4, 5, 6]);
+        getCustomerName().then(function (json) {
+
+            setGeneralManagerValueMap(json.items);
+
+        })
+
     }
     useEffect(() => {
         getGeneralManagerValueMap();
@@ -206,7 +201,7 @@ const DigitusCNDNForm = () => {
     const [noteDescriptionValue, setNoteDescriptionValue] = useState("");
 
     let stockAdjustmentRef = useRef(null);
-    const [stockAdjustmentValue, setStockAdjustmentValue] = useState("");
+    const [stockAdjustmentValue, setStockAdjustmentValue] = useState("no");
 
     let locationRef = useRef(null);
     const [locationValue, setLocationValue] = useState("");
@@ -223,7 +218,7 @@ const DigitusCNDNForm = () => {
             setCategoryValueMap(json.items);
 
         })
-        //setCategoryValueMap([1, 2, 3, 4, 5, 6]);
+
     }
     useEffect(() => {
         getCategoryValueMap();
@@ -256,7 +251,7 @@ const DigitusCNDNForm = () => {
     function handlePriceChange(event) {
         setUnitPriceValue(event.target.value);
         if (quantityValue && unitPriceValue) {
-            setTotalPriceValue(JSON.stringify(Number(unitPriceValue) * Number(quantityValue)));
+            setTotalPriceValue(JSON.stringify(Number(event.target.value) * Number(quantityValue)));
         }
     }
 
@@ -272,12 +267,6 @@ const DigitusCNDNForm = () => {
     const [csaItemsMap, setCsaItemsMap] = useState([]);
     const [isItemsMap, setIsItemsMap] = useState([]);
     const [cndnEntity, setCndnEntity] = useState({});
-
-    // const [itemFileEntriesMap, setItemFileEntriesMap] = useState([]);
-    // const [noteFileEntriesMap, setNoteFileEntriesMap] = useState([]);
-    // const [itemFileAttachmentsMap, setItemFileAttachmentsMap] = useState([]);
-    // const [noteFileAttachmentsMap, setNoteFileAttachmentsMap] = useState([]);
-
 
     let docNumberRef = useRef(null);
     const [docNumberValue, setDocNumberValue] = useState("");
@@ -295,54 +284,86 @@ const DigitusCNDNForm = () => {
         e.preventDefault();
 
         handleFiles(cndnNoteAttachmentsValue).then(function (resolve) {
-            // resolve.forEach((resolveItem) => {
-            //     let noteAttachment = {}
-            //     noteAttachment.id = resolveItem;
-            //     noteAttachmentsArray.push(noteAttachment);
-            // })
-            console.log(resolve);
+
             let cndnNote = {...cndnEntity};
             cndnNote.noteattachment = resolve;
-            cndnNote.noteitem = csaItemsMap;
+            if (deptValue === "cndncsadept") {
+                cndnNote.noteitem = csaItemsMap;
+                cndnNote.description = noteDescriptionValue;
+                cndnNote.financeController = financeControllerValue;
+                cndnNote.generalManager = generalManagerValue;
+                cndnNote.salesDirector = salesDirectorValue;
+                if (stockAdjustmentValue === "no") cndnNote.stockAdjustment = false;
+                if (stockAdjustmentValue === "yes") cndnNote.stockAdjustment = true;
+                let reasonPicklist = {};
+                if (reasonValue) {
+                    let reasonType = "";
+                    reasonValueMap.forEach(reason => {
+                        if (reason.key === reasonValue) reasonType = reason.name;
+                    })
+                    if (reasonType) {
+                        reasonPicklist.key = reasonValue;
+                        reasonPicklist.name = reasonType;
+                    }
+                }
+                cndnNote.reason = reasonPicklist;
+                cndnNote.location = locationValue;
+                cndnNote.lotSerial = lotSerialValue;
+                cndnNote.verificationAndConfirmedBy = verificationByValue;
+
+            }
+            if (deptValue === "cndnisdept") cndnNote.noteitem = isItemsMap;
             setCndnEntity(cndnNote);
 
-            // saveCNDNNote(cndnNote).then((res) => {
-            //     console.log(res);
-            // });
+            updateCNDNNote(JSON.stringify(cndnNote), cndnNote.id).then(function (json) {
+                window.location.reload();
+            });
+
         });
 
 
     }
 
-    async function handleFiles(files) {
+    function handleFiles(files) {
         return new Promise((resolve, reject) => {
             let cndnAttachments = [];
             if (files.length > 0) {
-                const promises = files.map(itemAttachment => {
+                files.map(itemAttachment => {
                     let body = new FormData();
                     let newName = generateRandomString(10) + itemAttachment.name;
                     body.append('file', getRenamedFile(itemAttachment, newName));
-                    return saveAttachments(body).then(json => {
+                    saveAttachments(body).then(json => {
                         let attachment = {}
-                        attachment.attachment = {"id": json.id}
-                        createAttachments(JSON.stringify(attachment)).then((json) => {
-                            delete json['actions'];
-                            delete json['creator'];
-                            delete json['dateCreated'];
-                            delete json['dateModified'];
-                            //cndnAttachments.push(JSON.stringify(json));
-                            cndnAttachments.push(json);
+                        attachment.attachment =
+                            {
+                                "id": json.id,
+                                "name": json.title,
+                                "link": {
+                                    "href": json.contentUrl,
+                                    "label": json.title
+                                }
+                            }
+                        return createAttachments(JSON.stringify(attachment)).then(attachmentResponse => {
+                            delete attachmentResponse['actions'];
+                            delete attachmentResponse['creator'];
+                            delete attachmentResponse['dateCreated'];
+                            delete attachmentResponse['dateModified'];
+                            cndnAttachments.push(attachmentResponse);
+
+                            if (cndnAttachments.length === files.length) {
+                                resolve(cndnAttachments);
+                            }
                         })
                     });
                 });
 
-                Promise.all(promises)
-                    .then(() => {
-                        resolve(cndnAttachments);
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
+                // Promise.all(promises)
+                //     .then(() => {
+                //         resolve(cndnAttachments);
+                //     })
+                //     .catch(error => {
+                //         reject(error);
+                //     });
             } else {
                 resolve(cndnAttachments);
             }
@@ -352,7 +373,7 @@ const DigitusCNDNForm = () => {
 
     function handleItemSave() {
         setCsaItemModalValue(false);
-        setTotalPriceValue(JSON.stringify(Number(unitPriceValue) * Number(quantityValue)));
+        setIsItemModalValue(false);
 
         let itemCategory = categoryValue;
         let itemDescription = itemDescriptionValue;
@@ -366,32 +387,55 @@ const DigitusCNDNForm = () => {
         let itemTotalPrice = totalPriceValue;
         let itemRemarks = remarksValue;
         let itemAttachments = [...cndnItemAttachmentsValue];
-
-        handleFiles(itemAttachments).then(function (resolve) {
-            // resolve.forEach((resolveItem) => {
-            //     let itemAttachment = {}
-            //     itemAttachment.id = resolveItem;
-            //     itemAttachmentsArray.push(itemAttachment);
-            // })
+        handleFiles(itemAttachments).then(function (resolver) {
             if (deptValue === "cndncsadept") {
                 let modCsaMap = [...csaItemsMap];
                 let csaItem = {};
-                if (itemCategory) csaItem.category = itemCategory;
+                //if (itemCategory) csaItem.category = "CSA";
+                csaItem.category = "CSA";
                 if (itemDescription) csaItem.description = itemDescription;
                 if (itemCustomerPartNo) csaItem.customerPartNumber = itemCustomerPartNo;
                 if (itemCustomerPONo) csaItem.customerPONumber = itemCustomerPONo;
                 if (itemNo) csaItem.itemNumber = itemNo;
                 if (itemInvoiceNo) csaItem.invoiceNumber = itemInvoiceNo;
                 if (itemInvoiceDate) csaItem.invoiceDate = itemInvoiceDate;
-                if (itemQuantity) csaItem.quantity = itemQuantity;
-                if (itemUnitPrice) csaItem.unitPrice = itemUnitPrice;
-                if (itemTotalPrice) csaItem.totalPrice = itemTotalPrice;
+                if (itemQuantity) csaItem.quantity = Number(itemQuantity);
+                if (itemUnitPrice) csaItem.unitPrice = Number(itemUnitPrice);
+                if (itemTotalPrice) csaItem.totalPrice = Number(itemTotalPrice);
                 if (itemRemarks) csaItem.remarks = itemRemarks;
-                csaItem.itemattachment = JSON.stringify(resolve);
-                console.log(csaItem);
-                saveCNDNItems(JSON.stringify(csaItem)).then(function (resolve) {
-                    modCsaMap.push(resolve);
+                csaItem.itemattachment = resolver;
+
+                saveCNDNItems(JSON.stringify(csaItem)).then(function (response) {
+                    delete response['actions'];
+                    delete response['creator'];
+                    delete response['dateCreated'];
+                    delete response['dateModified'];
+                    modCsaMap.push(response);
                     setCsaItemsMap(modCsaMap);
+                });
+
+            }
+            if (deptValue === "cndnisdept") {
+                let modIsMap = [...isItemsMap];
+                let isItem = {};
+                //if (itemCategory) isItem.category = itemCategory;
+                isItem.category = "IS";
+                if (itemDescription) isItem.description = itemDescription;
+                if (itemUnitPrice) isItem.unitPrice = Number(itemUnitPrice);
+                if (itemTotalPrice) isItem.totalPrice = Number(itemTotalPrice);
+                if (itemRemarks) isItem.remarks = itemRemarks;
+                if (itemQuantity) isItem.quantity = Number(itemQuantity);
+
+
+                isItem.itemattachment = resolver;
+
+                saveCNDNItems(JSON.stringify(isItem)).then(function (response) {
+                    delete response['actions'];
+                    delete response['creator'];
+                    delete response['dateCreated'];
+                    delete response['dateModified'];
+                    modIsMap.push(response);
+                    setIsItemsMap(modIsMap);
                 });
 
             }
@@ -438,7 +482,7 @@ const DigitusCNDNForm = () => {
         if (currencyValue) {
             let currencyName = "";
             currencyValueMap.forEach(curr => {
-                if (curr.key == currencyValue) currencyName = curr.name;
+                if (curr.key === currencyValue) currencyName = curr.name;
             })
             if (currencyName) {
                 currencyPicklist.key = currencyValue;
@@ -448,7 +492,7 @@ const DigitusCNDNForm = () => {
         if (deptValue) {
             let deptName = "";
             deptMap.forEach(dept => {
-                if (dept.key == deptValue) deptName = dept.name;
+                if (dept.key === deptValue) deptName = dept.name;
             })
             if (deptName) {
                 deptPicklist.key = deptValue;
@@ -458,7 +502,7 @@ const DigitusCNDNForm = () => {
         if (voucherTypeValue) {
             let voucherName = "";
             voucherTypeMap.forEach(voucher => {
-                if (voucher.key == voucherTypeValue) voucherName = voucher.name;
+                if (voucher.key === voucherTypeValue) voucherName = voucher.name;
             })
             if (voucherName) {
                 voucherPicklist.key = voucherTypeValue;
@@ -473,9 +517,12 @@ const DigitusCNDNForm = () => {
         if (custNameValue) requestBody.customerName = custNameValue;
         requestBody.approvalStatus = approvalStatus;
 
-        console.log(requestBody);
-
         saveDraftcndnApplication(JSON.stringify(requestBody)).then(function (json) {
+            delete json['actions'];
+            delete json['creator'];
+            delete json['dateCreated'];
+            delete json['dateModified'];
+
             if (json.id) {
                 if (voucherTypeValue === "cndndebit") {
                     setDocNumberValue("DN" + json.id);
@@ -617,12 +664,12 @@ const DigitusCNDNForm = () => {
                                             <select className="form-select" ref={categoryRef} name="Category"
                                                     value={categoryValue}
                                                     onChange={(event) => setCategoryValue(event.target.value)}>
-                                                <option value={defaultSelectValue}
-                                                        selected={true}>{defaultSelectOption}</option>
-                                                {categoryValueMap.map(cat => {
-                                                    return <option key={cat.key}
-                                                                   value={cat.name}>{cat.name}</option>
-                                                })}
+                                                <option value={"CSA"}
+                                                        selected={true}>{"CSA"}</option>
+                                                {/*{categoryValueMap.map(cat => {*/}
+                                                {/*    return <option key={cat.key}*/}
+                                                {/*                   value={cat.name}>{cat.name}</option>*/}
+                                                {/*})}*/}
                                             </select>
                                         </ContainerDivMD6>
                                         <ContainerDivMD6>
@@ -844,8 +891,8 @@ const DigitusCNDNForm = () => {
                                 onChange={(event) => setSalesDirectorValue(event.target.value)}>
                             <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
                             {salesDirectorValueMap.map(dir => {
-                                return <option key={dir.key}
-                                               value={dir.key}>{dir.name}</option>
+                                return <option key={dir.salesDirectorUserId}
+                                               value={dir.salesDirectorUserId}>{dir.salesDirectorEmail}</option>
                             })}
                         </select>
                     </ContainerDivMD4>
@@ -858,8 +905,8 @@ const DigitusCNDNForm = () => {
                                 onChange={(event) => setFinanceControlValue(event.target.value)}>
                             <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
                             {financeControllerValueMap.map(con => {
-                                return <option key={con.key}
-                                               value={con.key}>{con.name}</option>
+                                return <option key={con.financeControllerUserId}
+                                               value={con.financeControllerUserId}>{con.financeControllerEmail}</option>
                             })}
                         </select>
                     </ContainerDivMD4>
@@ -872,8 +919,8 @@ const DigitusCNDNForm = () => {
                                 onChange={(event) => setGeneralManagerValue(event.target.value)}>
                             <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
                             {generalManagerValueMap.map(man => {
-                                return <option key={man.key}
-                                               value={man.key}>{man.name}</option>
+                                return <option key={man.generalManagerUserId}
+                                               value={man.generalManagerUserId}>{man.generalManagerEmail}</option>
                             })}
                         </select>
                     </ContainerDivMD4>
@@ -894,7 +941,6 @@ const DigitusCNDNForm = () => {
                         <select className="form-select" ref={stockAdjustmentRef} name="Stock Adjustment"
                                 value={stockAdjustmentValue}
                                 onChange={(event) => setStockAdjustmentValue(event.target.value)}>
-                            <option value={defaultSelectValue} selected={true}>{defaultSelectOption}</option>
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
@@ -947,12 +993,12 @@ const DigitusCNDNForm = () => {
                                             <select className="form-select" ref={categoryRef} name="Category"
                                                     value={categoryValue}
                                                     onChange={(event) => setCategoryValue(event.target.value)}>
-                                                <option value={defaultSelectValue}
-                                                        selected={true}>{defaultSelectOption}</option>
-                                                {categoryValueMap.map(cat => {
-                                                    return <option key={cat.key}
-                                                                   value={cat.key}>{cat.name}</option>
-                                                })}
+                                                <option value={"IS"}
+                                                        selected={true}>{"IS"}</option>
+                                                {/*{categoryValueMap.map(cat => {*/}
+                                                {/*    return <option key={cat.key}*/}
+                                                {/*                   value={cat.key}>{cat.name}</option>*/}
+                                                {/*})}*/}
                                             </select>
                                         </ContainerDivMD6>
                                         <ContainerDivMD6>
@@ -982,7 +1028,7 @@ const DigitusCNDNForm = () => {
                                             <input className="form-control" ref={unitPriceRef} type="number"
                                                    name="Unit Price"
                                                    value={unitPriceValue}
-                                                   onChange={event => setUnitPriceValue(event.target.value)}/>
+                                                   onChange={event => handlePriceChange(event)}/>
                                         </ContainerDivMD4>
                                         <ContainerDivMD4>
                                             <label className="form-label">
@@ -990,6 +1036,7 @@ const DigitusCNDNForm = () => {
                                             </label>
                                             <input className="form-control" ref={totalPriceRef} type="number"
                                                    name="Total Price"
+                                                   readOnly={true}
                                                    value={totalPriceValue}
                                                    onChange={event => setTotalPriceValue(event.target.value)}/>
                                         </ContainerDivMD4>
@@ -1020,7 +1067,7 @@ const DigitusCNDNForm = () => {
                                     <Button variant="secondary" onClick={isModalClose}>
                                         Close
                                     </Button>
-                                    <Button variant="primary" onClick={isModalClose}>
+                                    <Button variant="primary" onClick={handleItemSave}>
                                         Save
                                     </Button>
                                 </Modal.Footer>
@@ -1038,6 +1085,15 @@ const DigitusCNDNForm = () => {
                         </tr>
                         </thead>
                         <tbody>
+                        {isItemsMap.map((item, index) => (
+                            <tr key={index}>
+                                <td><input type={"checkbox"}/></td>
+                                <td>{item.description}</td>
+                                <td>{item.quantity}</td>
+                                <td>{item.unitPrice}</td>
+                                <td>{item.totalPrice}</td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </>

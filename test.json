@@ -1,129 +1,89 @@
 {
-  "category": "CSA",
-  "description": "re",
-  "customerPartNumber": "23",
-  "customerPONumber": "23",
-  "itemNumber": "23",
-  "invoiceNumber": "23",
-  "invoiceDate": "2024-08-09",
-  "quantity": "23",
-  "unitPrice": "23",
-  "totalPrice": "46",
-  "remarks": "23",
-  "itemattachment": [
+  "externalReferenceCode": "string",
+  "keywords": [
+    "string"
+  ],
+  "taxonomyCategoryIds": [
+    0
+  ],
+  "approvalStatus": {
+    "key": "string",
+    "name": "string"
+  },
+  "creationDate": "2024-08-06",
+  "currency": {
+    "key": "string",
+    "name": "string"
+  },
+  "customerCode": "string",
+  "customerName": "string",
+  "dept": {
+    "key": "string",
+    "name": "string"
+  },
+  "description": "string",
+  "documentNumber": "string",
+  "financeController": 0,
+  "generalManager": 0,
+  "location": "string",
+  "lotSerial": "string",
+  "pleaseSpecifyForOthers": "string",
+  "reason": {
+    "key": "string",
+    "name": "string"
+  },
+  "requestor": 0,
+  "salesDirector": 0,
+  "stockAdjustment": true,
+  "verificationAndConfirmedBy": 0,
+  "voucherType": {
+    "key": "string",
+    "name": "string"
+  },
+  "noteattachment": [
     {
-      "actions": {
-        "permissions": {
-          "method": "GET",
-          "href": "http://localhost:8082/o/c/cndnattachments/35428/permissions"
-        },
-        "get": {
-          "method": "GET",
-          "href": "http://localhost:8082/o/c/cndnattachments/35428"
-        },
-        "replace": {
-          "method": "PUT",
-          "href": "http://localhost:8082/o/c/cndnattachments/35428"
-        },
-        "update": {
-          "method": "PATCH",
-          "href": "http://localhost:8082/o/c/cndnattachments/35428"
-        },
-        "delete": {
-          "method": "DELETE",
-          "href": "http://localhost:8082/o/c/cndnattachments/35428"
-        }
-      },
-      "creator": {
-        "additionalName": "",
-        "contentType": "UserAccount",
-        "familyName": "Test",
-        "givenName": "Test",
-        "id": 20122,
-        "name": "Test Test"
-      },
-      "dateCreated": "2024-08-05T09:22:53Z",
-      "dateModified": "2024-08-05T09:22:53Z",
-      "externalReferenceCode": "b354ea03-6433-072a-0bca-4fbeda024e67",
-      "id": 35428,
-      "keywords": [],
-      "status": {
-        "code": 0,
-        "label": "approved",
-        "label_i18n": "Approved"
-      },
-      "taxonomyCategoryBriefs": [],
+      "externalReferenceCode": "string",
+      "keywords": [
+        "string"
+      ],
+      "taxonomyCategoryIds": [
+        0
+      ],
+      "attachment": {},
       "r_itemattachment_c_creditDebitItemId": 0,
+      "itemattachment": {},
+      "r_itemattachment_c_creditDebitItemERC": "string",
       "r_noteattachment_c_creditDebitNoteId": 0,
-      "itemattachmentERC": "",
-      "attachment": {
-        "id": 35406,
-        "link": {
-          "href": "/documents/20117/0/9rupKW6WqHDay1+-+Liferay+Bootcamp+2024-Q2.pdf/ef507451-7321-7d10-7815-32c0115a53cd?version=1.0&t=1722849773315&download=true&objectDefinitionExternalReferenceCode=8b96c7c6-5565-fe92-d110-fc7227c527f8&objectEntryExternalReferenceCode=b354ea03-6433-072a-0bca-4fbeda024e67",
-          "label": "9rupKW6WqHDay1 - Liferay Bootcamp 2024-Q2.pdf"
-        },
-        "name": "9rupKW6WqHDay1 - Liferay Bootcamp 2024-Q2.pdf"
-      },
-      "r_itemattachment_c_creditDebitItemERC": "",
-      "noteattachmentERC": "",
-      "r_noteattachment_c_creditDebitNoteERC": ""
-    },
+      "noteattachment": {},
+      "r_noteattachment_c_creditDebitNoteERC": "string"
+    }
+  ],
+  "noteitem": [
     {
-      "actions": {
-        "permissions": {
-          "method": "GET",
-          "href": "http://localhost:8082/o/c/cndnattachments/35432/permissions"
-        },
-        "get": {
-          "method": "GET",
-          "href": "http://localhost:8082/o/c/cndnattachments/35432"
-        },
-        "replace": {
-          "method": "PUT",
-          "href": "http://localhost:8082/o/c/cndnattachments/35432"
-        },
-        "update": {
-          "method": "PATCH",
-          "href": "http://localhost:8082/o/c/cndnattachments/35432"
-        },
-        "delete": {
-          "method": "DELETE",
-          "href": "http://localhost:8082/o/c/cndnattachments/35432"
-        }
-      },
-      "creator": {
-        "additionalName": "",
-        "contentType": "UserAccount",
-        "familyName": "Test",
-        "givenName": "Test",
-        "id": 20122,
-        "name": "Test Test"
-      },
-      "dateCreated": "2024-08-05T09:22:53Z",
-      "dateModified": "2024-08-05T09:22:53Z",
-      "externalReferenceCode": "cf110245-8731-be6b-64f7-5a31ef4f752d",
-      "id": 35432,
-      "keywords": [],
-      "status": {
-        "code": 0,
-        "label": "approved",
-        "label_i18n": "Approved"
-      },
-      "taxonomyCategoryBriefs": [],
-      "r_itemattachment_c_creditDebitItemId": 0,
-      "r_noteattachment_c_creditDebitNoteId": 0,
-      "itemattachmentERC": "",
-      "attachment": {
-        "id": 35411,
-        "link": {
-          "href": "/documents/20117/0/uk0e5FfreKDay1+-+Liferay+Bootcamp+2024-Q2-latest.pdf/3e78ee0a-7213-c053-290c-5994c27ef0ff?version=1.0&t=1722849773325&download=true&objectDefinitionExternalReferenceCode=8b96c7c6-5565-fe92-d110-fc7227c527f8&objectEntryExternalReferenceCode=cf110245-8731-be6b-64f7-5a31ef4f752d",
-          "label": "uk0e5FfreKDay1 - Liferay Bootcamp 2024-Q2-latest.pdf"
-        },
-        "name": "uk0e5FfreKDay1 - Liferay Bootcamp 2024-Q2-latest.pdf"
-      },
-      "r_itemattachment_c_creditDebitItemERC": "",
-      "noteattachmentERC": "",
-      "r_noteattachment_c_creditDebitNoteERC": ""
+      "externalReferenceCode": "string",
+      "keywords": [
+        "string"
+      ],
+      "taxonomyCategoryIds": [
+        0
+      ],
+      "category": "string",
+      "customerPartNumber": "string",
+      "customerPONumber": "string",
+      "description": "string",
+      "invoiceDate": "2024-08-06",
+      "invoiceNumber": "string",
+      "itemNumber": "string",
+      "quantity": 0,
+      "remarks": "string",
+      "r_noteitem_c_creditDebitNoteId": 0,
+      "noteitem": {},
+      "r_noteitem_c_creditDebitNoteERC": "string",
+      "totalPrice": 0,
+      "unitPrice": 0,
+      "itemattachment": [
+        {}
+      ]
     }
   ]
 }

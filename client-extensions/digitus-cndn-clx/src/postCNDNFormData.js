@@ -38,8 +38,6 @@ export function createAttachments(body){
 }
 
 export function saveCNDNItems(body){
-    console.log("checking body")
-    console.log(body);
 
     return fetch("http://localhost:8082/o/c/creditdebititems/",
         {method: 'POST',
@@ -54,10 +52,10 @@ export function saveCNDNItems(body){
 
 
 
-export function saveCNDNNote(body){
+export function updateCNDNNote(body,id){
 
-    return fetch("http://localhost:8082/o/c/creditdebitnotes/",
-        {method: 'POST',
+    return fetch(`http://localhost:8082/o/c/creditdebitnotes/${id}`,
+        {method: 'PATCH',
             headers:{
                 'Content-Type':'application/json',
                 'Authorization': `Basic ${btoa('test@liferay.com:learn')}`
