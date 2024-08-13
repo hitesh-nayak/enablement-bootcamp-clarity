@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+
+<workflow-definition
+        xmlns="urn:liferay.com:liferay-workflow_7.4.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.4.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_4_0.xsd"
+>
+    <name>847b0c7e-5f46-5fe9-fd67-eaa2898d9fad</name>
+    <version>21</version>
+    <condition>
+        <name>departmentVerification</name>
+        <description>Execute conditional logic.</description>
+        <metadata>
+            <![CDATA[
+				{
+					"xy": [
+						257.4063671582762,
+						219.1171900030982
+					]
+				}
+			]]>
+        </metadata>
+        <labels>
+            <label language-id="en_US">
+                Department Verification
+            </label>
+        </labels>
+        <script>
+            <![CDATA[import com.liferay.object.model.ObjectEntry;
+		import com.liferay.object.service.ObjectEntryLocalServiceUtil;
+		import com.liferay.portal.kernel.model.User;
+		import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+		import com.liferay.portal.kernel.util.GetterUtil;
+		import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+		System.out.println("In GROOVY Checking department.");
+		String className = (String) workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
+		System.out.println("classname:" + className);
+		long classPK = GetterUtil.getLong((String) workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+		System.out.println("classPK:" + classPK);
+		ObjectEntry objectEntry = ObjectEntryLocalServiceUtil.fetchObjectEntry(classPK);
+		Map<String, Serializable> values = objectEntry.getValues();
+		String department = (String) values.get("dept");
+
+		if (department.equalsIgnoreCase("cndncsadept")) returnValue = "csaManager";
+		if (department.equalsIgnoreCase("cndnisdept")) returnValue = "finance1";
+]]>
+        </script>
+        <script-language>groovy</script-language>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        to csa manager
+                    </label>
+                </labels>
+                <name>csaManager</name>
+                <target>csaReview</target>
+                <default>true</default>
+            </transition>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        to finance 1
+                    </label>
+                </labels>
+                <name>finance1</name>
+                <target>finance1Review</target>
+                <default>false</default>
+            </transition>
+        </transitions>
+    </condition>
+    <state>
+        <name>60c34f1e-b5e8-4f15-93dc-8003b6255056</name>
+        <description>Begin a workflow.</description>
+        <metadata>
+            <![CDATA[
+				{
+					"xy": [
+						-284.79692380400155,
+						218.63932824936535
+					]
+				}
+			]]>
+        </metadata>
+        <initial>true</initial>
+        <labels>
+            <label language-id="en_US">
+                Start
+            </label>
+        </labels>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        Check Department
+                    </label>
+                </labels>
+                <name>checkDepartment</name>
+                <target>departmentVerification</target>
+                <default>true</default>
+            </transition>
+        </transitions>
+    </state>
+    <state>
+        <name>cndnApproved</name>
+        <description>Conclude the workflow. And approve the cndn</description>
+        <metadata>
+            <![CDATA[
+				{
+					"xy": [
+						1011.000244140625,
+						-200.9999008178711
+					],
+					"terminal": true
+				}
+			]]>
+        </metadata>
+        <actions>
+            <action>
+                <name>CNDN Approved</name>
+                <description>CNDN Approved</description>
+                <status>0</status>
+                <priority>1</priority>
+                <execution-type>onEntry</execution-type>
+            </action>
+        </actions>
+        <labels>
+            <label language-id="en_US">
+                CNDN Approved
+            </label>
+        </labels>
+    </state>
+    <state>
+        <name>cndnRejected</name>
+        <description>Conclude the workflow. And reject the cndn.</description>
+        <metadata>
+            <![CDATA[
+				{
+					"xy": [
+						1000.4063720703125,
+						642.4792251586914
+					],
+					"terminal": true
+				}
+			]]>
+        </metadata>
+        <actions>
+            <action>
+                <name>CNDN Rejected</name>
+                <description>CNDN rejected</description>
+                <status>4</status>
+                <priority>1</priority>
+                <execution-type>onEntry</execution-type>
+            </action>
+        </actions>
+        <labels>
+            <label language-id="en_US">
+                CNDN Rejected
+            </label>
+        </labels>
+    </state>
+    <task>
+        <name>finance1Review</name>
+        <description>Ask a user to work on the item.</description>
+        <metadata>
+            <![CDATA[
+				{
+					"xy": [
+						258.4063720703125,
+						491.3959732055664
+					]
+				}
+			]]>
+        </metadata>
+        <actions>
+            <notification>
+                <name>Finance 1 review</name>
+                <description>
+                    <![CDATA[]]>
+                </description>
+                <template>
+                    <![CDATA[You have a cndn note to review.
+]]>
+                </template>
+                <template-language>text</template-language>
+                <notification-type>email</notification-type>
+                <recipients receptionType="to">
+                    <roles>
+                        <role>
+                            <role-type>regular</role-type>
+                            <name>Finance 1</name>
+                            <auto-create>false</auto-create>
+                        </role>
+                    </roles>
+                </recipients>
+                <execution-type>onAssignment</execution-type>
+            </notification>
+        </actions>
+        <assignments>
+            <roles>
+                <role>
+                    <role-type>regular</role-type>
+                    <name>Finance 1</name>
+                    <auto-create>false</auto-create>
+                </role>
+            </roles>
+        </assignments>
+        <labels>
+            <label language-id="en_US">
+                Finance 1 Review
+            </label>
+        </labels>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        finance 1 approval
+                    </label>
+                </labels>
+                <name>finance1Approval</name>
+                <target>cndnApproved</target>
+                <default>true</default>
+            </transition>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        finance 1 rejection
+                    </label>
+                </labels>
+                <name>finance1rejection</name>
+                <target>cndnRejected</target>
+                <default>false</default>
+            </transition>
+        </transitions>
+    </task>
+    <task>
+        <name>csaReview</name>
+        <description>Ask a user to work on the item.</description>
+        <metadata>
+            <![CDATA[
+				{
+					"xy": [
+						254.40625,
+						-64.6041488647461
+					]
+				}
+			]]>
+        </metadata>
+        <actions>
+            <notification>
+                <name>CSA Review email</name>
+                <description>
+                    <![CDATA[]]>
+                </description>
+                <template>
+                    <![CDATA[You have a cndn note to review.
+]]>
+                </template>
+                <template-language>text</template-language>
+                <notification-type>email</notification-type>
+                <recipients receptionType="to">
+                    <roles>
+                        <role>
+                            <role-id>39523</role-id>
+                        </role>
+                    </roles>
+                </recipients>
+                <execution-type>onAssignment</execution-type>
+            </notification>
+        </actions>
+        <assignments>
+            <roles>
+                <role>
+                    <role-type>regular</role-type>
+                    <name>CSA Manager</name>
+                    <auto-create>false</auto-create>
+                </role>
+            </roles>
+        </assignments>
+        <labels>
+            <label language-id="en_US">
+                CSA Review
+            </label>
+        </labels>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        csa approval
+                    </label>
+                </labels>
+                <name>csaApproval</name>
+                <target>cndnApproved</target>
+                <default>true</default>
+            </transition>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        csa rejection
+                    </label>
+                </labels>
+                <name>csaRejection</name>
+                <target>cndnRejected</target>
+                <default>false</default>
+            </transition>
+        </transitions>
+    </task>
+</workflow-definition>

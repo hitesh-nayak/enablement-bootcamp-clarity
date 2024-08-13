@@ -357,6 +357,7 @@ const DigitusCNDNForm = () => {
                     });
                 });
 
+                // The below code does not work, present here for retrospection purpose. It does not work because promise is resolving before responses are available.
                 // Promise.all(promises)
                 //     .then(() => {
                 //         resolve(cndnAttachments);
