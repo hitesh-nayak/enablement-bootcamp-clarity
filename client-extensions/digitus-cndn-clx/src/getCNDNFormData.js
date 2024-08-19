@@ -1,3 +1,4 @@
+import {Liferay} from "./common/services/liferay/liferay";
 
 const vocabularyName ="";
 export function getVoucherType() {
@@ -47,6 +48,8 @@ export function getRequestor(){
     return fetch("http://localhost:8082/o/headless-admin-user/v1.0/user-accounts",
         {headers:{Authorization: `Basic ${btoa('test@liferay.com:learn')}` }})
         .then(Response => Response.json())
+
+    //return Liferay.Util.fetch("http://localhost:58081/object/entry/manager/1/fc7b97dc-2916-528b-b8b4-bc5abccd4d6c").then(Response => Response.json())
 
 
 }

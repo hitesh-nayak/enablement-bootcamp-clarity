@@ -16,9 +16,12 @@ import {
     saveDraftcndnApplication, updateCNDNNote
 } from "./postCNDNFormData";
 import {generateRandomString, getRenamedFile} from "./DigitusUtil";
+import api from "./common/services/liferay/api";
 
 
 const DigitusCNDNForm = () => {
+
+    api()
 
     //DIGITUS CNDN FORM IMPLEMENTATION
     const defaultSelectOption = "Select";

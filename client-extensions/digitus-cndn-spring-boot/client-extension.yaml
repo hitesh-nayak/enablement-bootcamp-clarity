@@ -1,0 +1,43 @@
+assemble:
+    - fromTask: bootJar
+digitus-cndn-spring-boot-notification-type-1:
+    name: Digitus CNDN Spring Boot Notification Type 1
+    oAuth2ApplicationExternalReferenceCode: digitus-cndn-spring-boot-oauth-application-user-agent
+    resourcePath: /notification/type/1
+    type: notificationType
+digitus-cndn-spring-boot-oauth-application-user-agent:
+    .serviceAddress: localhost:58081
+    .serviceScheme: http
+    name: Digitus CNDN Spring Boot OAuth Application User Agent
+    scopes:
+        - Liferay.Headless.Admin.Workflow.everything
+        - Liferay.Notification.REST.everything
+        - c_digituscustomer.everything
+    type: oAuthApplicationUserAgent
+digitus-cndn-spring-boot-object-action-1:
+    name: Digitus CNDN Spring Boot Object Action 1
+    oAuth2ApplicationExternalReferenceCode: digitus-cndn-spring-boot-oauth-application-user-agent
+    resourcePath: /object/action/1
+    type: objectAction
+digitus-cndn-spring-boot-object-action-2:
+    name: Digitus CNDN Spring Boot Object Action 2
+    oAuth2ApplicationExternalReferenceCode: digitus-cndn-spring-boot-oauth-application-user-agent
+    resourcePath: /object/action/2
+    type: objectAction
+digitus-cndn-spring-boot-object-entry-manager-1:
+    name: Digitus CNDN Spring Boot Object Entry Manager 1
+    oAuth2ApplicationExternalReferenceCode: digitus-cndn-spring-boot-oauth-application-user-agent
+    resourcePath: /object/entry/manager/1
+    type: objectEntryManager
+digitus-cndn-spring-boot-object-validation-rule-1:
+    allowedObjectDefinitionNames:
+        - C_Employee
+    name: Digitus CNDN Spring Boot Spring Boot Object Validation Rule 1
+    oAuth2ApplicationExternalReferenceCode: digitus-cndn-spring-boot-oauth-application-user-agent
+    resourcePath: /object/validation/rule/1
+    type: objectValidationRule
+digitus-cndn-spring-boot-workflow-action-1:
+    name: Digitus CNDN Spring Boot Workflow Action 1
+    oAuth2ApplicationExternalReferenceCode: digitus-cndn-spring-boot-oauth-application-user-agent
+    resourcePath: /workflow/action/1
+    type: workflowAction

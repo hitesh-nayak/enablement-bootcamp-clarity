@@ -5,7 +5,25 @@
             "client-extensions/liferay-clarity-theme-css",
             "client-extensions/react-jan11",
             "client-extensions/react-intern-crud",
-            "client-extensions/digitus-cndn-clx"
+            "client-extensions/digitus-cndn-clx",
+            "blade-samples/client-extensions/liferay-sample-commerce-checkout-step",
+            "blade-samples/client-extensions/liferay-sample-custom-element-1",
+            "blade-samples/client-extensions/liferay-sample-custom-element-2",
+            "blade-samples/client-extensions/liferay-sample-custom-element-3",
+            "blade-samples/client-extensions/liferay-sample-custom-element-4",
+            "blade-samples/client-extensions/liferay-sample-custom-element-5",
+            "blade-samples/client-extensions/liferay-sample-editor-config-contributor",
+            "blade-samples/client-extensions/liferay-sample-etc-frontend",
+            "blade-samples/client-extensions/liferay-sample-etc-node",
+            "blade-samples/client-extensions/liferay-sample-fds-cell-renderer",
+            "blade-samples/client-extensions/liferay-sample-fds-filter",
+            "blade-samples/client-extensions/liferay-sample-global-css",
+            "blade-samples/client-extensions/liferay-sample-global-js-1",
+            "blade-samples/client-extensions/liferay-sample-global-js-2",
+            "blade-samples/client-extensions/liferay-sample-js-import-maps-entry",
+            "blade-samples/client-extensions/liferay-sample-theme-css-1",
+            "blade-samples/client-extensions/liferay-sample-theme-css-2",
+            "blade-samples/client-extensions/liferay-sample-theme-spritemap-2"
         ]
     }
 }

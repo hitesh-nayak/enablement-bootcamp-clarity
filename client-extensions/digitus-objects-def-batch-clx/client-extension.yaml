@@ -6,7 +6,7 @@ digitus-object-batch:
     oAuthApplicationHeadlessServer: digitus-batch-oauth-application-headless-server
     type: batch
 digitus-batch-oauth-application-headless-server:
-    .serviceAddress: localhost:8081
+    .serviceAddress: localhost:8083
     .serviceScheme: http
     name: Digitus Batch OAuth Application Headless Server
     scopes:
