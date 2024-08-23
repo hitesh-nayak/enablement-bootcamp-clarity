@@ -1,6 +1,7 @@
 package com.liferay.custom.object.portlet;
 
 import com.liferay.custom.object.constants.CustomObjectSearchAndEditPortletKeys;
+import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
 import com.liferay.object.model.ObjectEntry;
 import com.liferay.object.service.ObjectDefinitionLocalServiceUtil;
 import com.liferay.object.service.ObjectEntryLocalServiceUtil;

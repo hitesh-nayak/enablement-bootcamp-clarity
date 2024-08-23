@@ -21,8 +21,6 @@ import api from "./common/services/liferay/api";
 
 const DigitusCNDNForm = () => {
 
-    api()
-
     //DIGITUS CNDN FORM IMPLEMENTATION
     const defaultSelectOption = "Select";
     const defaultSelectValue = "-1";
