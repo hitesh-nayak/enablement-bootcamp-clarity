@@ -5,6 +5,13 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 
+
+<%
+String test = (String) request.getAttribute("test222");
+System.out.println(test);
+
+%>
+
 <portlet:defineObjects />
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />

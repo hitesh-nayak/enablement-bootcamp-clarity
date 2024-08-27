@@ -41,6 +41,10 @@ public class X7Y2Portlet extends MVCPortlet {
 			X7Y2PortletInstanceConfiguration.class.getName(),
 			_getX7Y2PortletInstanceConfiguration(renderRequest));
 
+		renderRequest.setAttribute(
+				"test222",
+				"test222");
+
 		super.render(renderRequest, renderResponse);
 	}
 
