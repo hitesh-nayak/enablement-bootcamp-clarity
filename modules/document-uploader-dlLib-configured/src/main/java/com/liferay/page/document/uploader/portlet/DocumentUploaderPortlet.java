@@ -1,29 +1,21 @@
 package com.liferay.page.document.uploader.portlet;
 
+import com.liferay.document.library.configuration.DLConfiguration;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
 import com.liferay.headless.commerce.core.util.ServiceContextHelper;
 import com.liferay.page.document.uploader.constants.DocumentUploaderPortletKeys;
-
-import com.liferay.page.document.uploader.util.DLAdminDisplayContext;
 import com.liferay.page.document.uploader.util.DLAdminDisplayContextProvider;
-import com.liferay.page.document.uploader.util.DocumentUploaderUtil;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.configuration.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Layout;
-import com.liferay.portal.kernel.model.Repository;
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
+import com.liferay.portal.kernel.module.configuration.ConfigurationException;
+
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-
 import javax.portlet.*;
-import javax.servlet.http.HttpServletRequest;
-
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.kernel.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -37,6 +29,9 @@ import org.osgi.service.component.annotations.Reference;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author me
@@ -46,7 +41,6 @@ import java.net.URLConnection;
                 "com.liferay.portlet.display-category=category.sample",
                 "com.liferay.portlet.header-portlet-css=/css/main.css",
                 "com.liferay.portlet.instanceable=true",
-                "javax.portlet.display-name=DocumentUploaderDlLibConfigured",
                 "javax.portlet.init-param.template-path=/",
                 "javax.portlet.init-param.view-template=/view.jsp",
                 "javax.portlet.name=" + DocumentUploaderPortletKeys.DOCUMENTUPLOADER,
@@ -63,14 +57,16 @@ public class DocumentUploaderPortlet extends MVCPortlet {
     @Override
     public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
 
-//        PortletPreferences preferences = renderRequest.getPreferences();
-//        String folderId = preferences.getValue("folderId", "0");
-//        try {
-//            Folder folder = (Folder) DLFolderLocalServiceUtil.getFolder(Long.parseLong(folderId));
-//        } catch (PortalException e) {
-//            log.error(e.getMessage(), e);
-//        }
-//        renderRequest.setAttribute("DOCUMENT_LIBRARY_FOLDER", folderId);
+        ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+        String extensions = "";
+
+        try {
+            DLConfiguration dlConfiguration = ConfigurationProviderUtil.getCompanyConfiguration(DLConfiguration.class,themeDisplay.getCompanyId());
+            String [] extensionsArray = dlConfiguration.fileExtensions();
+            renderRequest.setAttribute("extensions",String.join(",", extensionsArray));
+        } catch (ConfigurationException e) {
+            throw new RuntimeException(e);
+        }
 
         super.render(renderRequest, renderResponse);
     }
