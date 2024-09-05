@@ -1,0 +1,101 @@
+{
+  "configuration": {
+    "className": "com.liferay.headless.admin.workflow.dto.v1_0.WorkflowDefinition",
+    "parameters": {
+      "containsHeaders": "true",
+      "createStrategy": "INSERT",
+      "onErrorFail": "false",
+      "updateStrategy": "UPDATE"
+    },
+    "taskItemDelegateName": "DEFAULT"
+  },
+  "items": [
+    {
+      "active": true,
+      "content": "{\"#tag-name\":\"workflow-definition\",\"#child-nodes\":[{\"#tag-name\":\"version\",\"#value\":\"26\"},{\"#tag-name\":\"condition\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"departmentVerification\"},{\"#tag-name\":\"description\",\"#value\":\"Execute conditional logic.\"},{\"#tag-name\":\"metadata\",\"#cdata-value\":[\"\",\"                {\",\"                    \\\"xy\\\": [\",\"                        257.4063671582762,\",\"                        219.1171900030982\",\"                    ]\",\"                }\",\"            \"]},{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"Department Verification\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"script\",\"#cdata-value\":[\"import com.liferay.object.model.ObjectEntry;\",\"        import com.liferay.object.service.ObjectEntryLocalServiceUtil;\",\"        import com.liferay.portal.kernel.model.User;\",\"        import com.liferay.portal.kernel.service.UserLocalServiceUtil;\",\"        import com.liferay.portal.kernel.util.GetterUtil;\",\"        import com.liferay.portal.kernel.workflow.WorkflowConstants;\",\"\",\"        System.out.println(\\\"In GROOVY Checking department.\\\");\",\"        String className = (String) workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);\",\"        System.out.println(\\\"classname:\\\" + className);\",\"        long classPK = GetterUtil.getLong((String) workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));\",\"        System.out.println(\\\"classPK:\\\" + classPK);\",\"        ObjectEntry objectEntry = ObjectEntryLocalServiceUtil.fetchObjectEntry(classPK);\",\"        Map<String, Serializable> values = objectEntry.getValues();\",\"        String department = (String) values.get(\\\"dept\\\");\",\"\",\"        if (department.equalsIgnoreCase(\\\"cndncsadept\\\")) returnValue = \\\"csaManager\\\";\",\"        if (department.equalsIgnoreCase(\\\"cndnisdept\\\")) returnValue = \\\"finance1\\\";\"]},{\"#tag-name\":\"script-language\",\"#value\":\"groovy\"},{\"#tag-name\":\"transitions\",\"#child-nodes\":[{\"#tag-name\":\"transition\",\"#child-nodes\":[{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"to csa manager\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"name\",\"#value\":\"csaManager\"},{\"#tag-name\":\"target\",\"#value\":\"csaReview\"},{\"#tag-name\":\"default\",\"#value\":\"true\"}]},{\"#tag-name\":\"transition\",\"#child-nodes\":[{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"to finance 1\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"name\",\"#value\":\"finance1\"},{\"#tag-name\":\"target\",\"#value\":\"finance1Review\"},{\"#tag-name\":\"default\",\"#value\":\"false\"}]}]}]},{\"#tag-name\":\"state\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"60c34f1e-b5e8-4f15-93dc-8003b6255056\"},{\"#tag-name\":\"description\",\"#value\":\"Begin a workflow.\"},{\"#tag-name\":\"metadata\",\"#cdata-value\":[\"\",\"                {\",\"                    \\\"xy\\\": [\",\"                        -284.79692380400155,\",\"                        218.63932824936535\",\"                    ]\",\"                }\",\"            \"]},{\"#tag-name\":\"initial\",\"#value\":\"true\"},{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"Start\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"transitions\",\"#child-nodes\":[{\"#tag-name\":\"transition\",\"#child-nodes\":[{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"Check Department\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"name\",\"#value\":\"checkDepartment\"},{\"#tag-name\":\"target\",\"#value\":\"departmentVerification\"},{\"#tag-name\":\"default\",\"#value\":\"true\"}]}]}]},{\"#tag-name\":\"state\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"cndnApproved\"},{\"#tag-name\":\"description\",\"#value\":\"Conclude the workflow. And approve the cndn\"},{\"#tag-name\":\"metadata\",\"#cdata-value\":[\"\",\"                {\",\"                    \\\"xy\\\": [\",\"                        1011.000244140625,\",\"                        -200.9999008178711\",\"                    ],\",\"                    \\\"terminal\\\": true\",\"                }\",\"            \"]},{\"#tag-name\":\"actions\",\"#child-nodes\":[{\"#tag-name\":\"action\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"CNDN Approved\"},{\"#tag-name\":\"description\",\"#value\":\"CNDN Approved\"},{\"#tag-name\":\"status\",\"#value\":\"0\"},{\"#tag-name\":\"priority\",\"#value\":\"1\"},{\"#tag-name\":\"execution-type\",\"#value\":\"onEntry\"}]}]},{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"CNDN Approved\",\"language-id\":\"en_US\"}]}]},{\"#tag-name\":\"state\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"cndnRejected\"},{\"#tag-name\":\"description\",\"#value\":\"Conclude the workflow. And reject the cndn.\"},{\"#tag-name\":\"metadata\",\"#cdata-value\":[\"\",\"                {\",\"                    \\\"xy\\\": [\",\"                        1000.4063720703125,\",\"                        642.4792251586914\",\"                    ],\",\"                    \\\"terminal\\\": true\",\"                }\",\"            \"]},{\"#tag-name\":\"actions\",\"#child-nodes\":[{\"#tag-name\":\"action\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"CNDN Rejected\"},{\"#tag-name\":\"description\",\"#value\":\"CNDN rejected\"},{\"#tag-name\":\"status\",\"#value\":\"4\"},{\"#tag-name\":\"priority\",\"#value\":\"1\"},{\"#tag-name\":\"execution-type\",\"#value\":\"onEntry\"}]}]},{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"CNDN Rejected\",\"language-id\":\"en_US\"}]}]},{\"#tag-name\":\"task\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"finance1Review\"},{\"#tag-name\":\"description\",\"#value\":\"Ask a user to work on the item.\"},{\"#tag-name\":\"metadata\",\"#cdata-value\":[\"\",\"                {\",\"                    \\\"xy\\\": [\",\"                        258.4063720703125,\",\"                        491.3959732055664\",\"                    ]\",\"                }\",\"            \"]},{\"#tag-name\":\"actions\",\"#child-nodes\":[{\"#tag-name\":\"notification\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"Finance 1 review\"},{\"#tag-name\":\"description\"},{\"#tag-name\":\"template\",\"#cdata-value\":[\"You have a cndn note to review.\"]},{\"#tag-name\":\"template-language\",\"#value\":\"text\"},{\"#tag-name\":\"notification-type\",\"#value\":\"email\"},{\"#tag-name\":\"recipients\",\"#child-nodes\":[{\"#tag-name\":\"roles\",\"#child-nodes\":[{\"#tag-name\":\"role\",\"#child-nodes\":[{\"#tag-name\":\"role-type\",\"#value\":\"regular\"},{\"#tag-name\":\"name\",\"#value\":\"Finance 1\"},{\"#tag-name\":\"auto-create\",\"#value\":\"false\"}]}]}],\"receptionType\":\"to\"},{\"#tag-name\":\"execution-type\",\"#value\":\"onAssignment\"}]}]},{\"#tag-name\":\"assignments\",\"#child-nodes\":[{\"#tag-name\":\"roles\",\"#child-nodes\":[{\"#tag-name\":\"role\",\"#child-nodes\":[{\"#tag-name\":\"role-type\",\"#value\":\"regular\"},{\"#tag-name\":\"name\",\"#value\":\"Finance 1\"},{\"#tag-name\":\"auto-create\",\"#value\":\"false\"}]}]}]},{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"Finance 1 Review\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"transitions\",\"#child-nodes\":[{\"#tag-name\":\"transition\",\"#child-nodes\":[{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"finance 1 approval\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"name\",\"#value\":\"finance1Approval\"},{\"#tag-name\":\"target\",\"#value\":\"cndnApproved\"},{\"#tag-name\":\"default\",\"#value\":\"true\"}]},{\"#tag-name\":\"transition\",\"#child-nodes\":[{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"finance 1 rejection\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"name\",\"#value\":\"finance1rejection\"},{\"#tag-name\":\"target\",\"#value\":\"cndnRejected\"},{\"#tag-name\":\"default\",\"#value\":\"false\"}]}]}]},{\"#tag-name\":\"task\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"csaReview\"},{\"#tag-name\":\"description\",\"#value\":\"Ask a user to work on the item.\"},{\"#tag-name\":\"metadata\",\"#cdata-value\":[\"\",\"                {\",\"                    \\\"xy\\\": [\",\"                        254.40625,\",\"                        -64.6041488647461\",\"                    ]\",\"                }\",\"            \"]},{\"#tag-name\":\"actions\",\"#child-nodes\":[{\"#tag-name\":\"notification\",\"#child-nodes\":[{\"#tag-name\":\"name\",\"#value\":\"CSA Review email\"},{\"#tag-name\":\"description\"},{\"#tag-name\":\"template\",\"#cdata-value\":[\"You have a cndn note to review.\"]},{\"#tag-name\":\"template-language\",\"#value\":\"text\"},{\"#tag-name\":\"notification-type\",\"#value\":\"email\"},{\"#tag-name\":\"recipients\",\"#child-nodes\":[{\"#tag-name\":\"roles\",\"#child-nodes\":[{\"#tag-name\":\"role\",\"#child-nodes\":[{\"#tag-name\":\"role-type\",\"#value\":\"regular\"},{\"#tag-name\":\"name\",\"#value\":\"CSA Manager\"},{\"#tag-name\":\"auto-create\",\"#value\":\"false\"}]}]}],\"receptionType\":\"to\"},{\"#tag-name\":\"execution-type\",\"#value\":\"onAssignment\"}]}]},{\"#tag-name\":\"assignments\",\"#child-nodes\":[{\"#tag-name\":\"roles\",\"#child-nodes\":[{\"#tag-name\":\"role\",\"#child-nodes\":[{\"#tag-name\":\"role-type\",\"#value\":\"regular\"},{\"#tag-name\":\"name\",\"#value\":\"CSA Manager\"},{\"#tag-name\":\"auto-create\",\"#value\":\"false\"}]}]}]},{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"CSA Review\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"transitions\",\"#child-nodes\":[{\"#tag-name\":\"transition\",\"#child-nodes\":[{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"csa approval\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"name\",\"#value\":\"csaApproval\"},{\"#tag-name\":\"target\",\"#value\":\"cndnApproved\"},{\"#tag-name\":\"default\",\"#value\":\"true\"}]},{\"#tag-name\":\"transition\",\"#child-nodes\":[{\"#tag-name\":\"labels\",\"#child-nodes\":[{\"#tag-name\":\"label\",\"#value\":\"csa rejection\",\"language-id\":\"en_US\"}]},{\"#tag-name\":\"name\",\"#value\":\"csaRejection\"},{\"#tag-name\":\"target\",\"#value\":\"cndnRejected\"},{\"#tag-name\":\"default\",\"#value\":\"false\"}]}]}]}],\"xmlns\":\"urn:liferay.com:liferay-workflow_7.4.0\",\"xsi:schemaLocation\":\"urn:liferay.com:liferay-workflow_7.4.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_4_0.xsd\",\"xmlns:xsi\":\"http://www.w3.org/2001/XMLSchema-instance\"}",
+      "description": "",
+      "name": "847b0c7e-5f46-5fe9-fd67-eaa2898d9fad",
+      "nodes": [
+        {
+          "label": "\n\t\t\t\tCNDN Approved\n\t\t\t",
+          "name": "cndnApproved",
+          "type": "TERMINAL_STATE"
+        },
+        {
+          "label": "\n\t\t\t\tFinance 1 Review\n\t\t\t",
+          "name": "finance1Review",
+          "type": "TASK"
+        },
+        {
+          "label": "\n\t\t\t\tDepartment Verification\n\t\t\t",
+          "name": "departmentVerification",
+          "type": "CONDITION"
+        },
+        {
+          "label": "\n\t\t\t\tCNDN Rejected\n\t\t\t",
+          "name": "cndnRejected",
+          "type": "TERMINAL_STATE"
+        },
+        {
+          "label": "\n\t\t\t\tStart\n\t\t\t",
+          "name": "60c34f1e-b5e8-4f15-93dc-8003b6255056",
+          "type": "INITIAL_STATE"
+        },
+        {
+          "label": "\n\t\t\t\tCSA Review\n\t\t\t",
+          "name": "csaReview",
+          "type": "TASK"
+        }
+      ],
+      "title": "CNDN Approval workflow",
+      "title_i18n": {
+        "en_US": "CNDN Approval workflow"
+      },
+      "transitions": [
+        {
+          "label": "\n\t\t\t\t\t\tfinance 1 approval\n\t\t\t\t\t",
+          "name": "finance1Approval",
+          "sourceNodeName": "finance1Review",
+          "targetNodeName": "cndnApproved"
+        },
+        {
+          "label": "\n\t\t\t\t\t\tfinance 1 rejection\n\t\t\t\t\t",
+          "name": "finance1rejection",
+          "sourceNodeName": "finance1Review",
+          "targetNodeName": "cndnRejected"
+        },
+        {
+          "label": "\n\t\t\t\t\t\tto csa manager\n\t\t\t\t\t",
+          "name": "csaManager",
+          "sourceNodeName": "departmentVerification",
+          "targetNodeName": "csaReview"
+        },
+        {
+          "label": "\n\t\t\t\t\t\tto finance 1\n\t\t\t\t\t",
+          "name": "finance1",
+          "sourceNodeName": "departmentVerification",
+          "targetNodeName": "finance1Review"
+        },
+        {
+          "label": "\n\t\t\t\t\t\tCheck Department\n\t\t\t\t\t",
+          "name": "checkDepartment",
+          "sourceNodeName": "60c34f1e-b5e8-4f15-93dc-8003b6255056",
+          "targetNodeName": "departmentVerification"
+        },
+        {
+          "label": "\n\t\t\t\t\t\tcsa approval\n\t\t\t\t\t",
+          "name": "csaApproval",
+          "sourceNodeName": "csaReview",
+          "targetNodeName": "cndnApproved"
+        },
+        {
+          "label": "\n\t\t\t\t\t\tcsa rejection\n\t\t\t\t\t",
+          "name": "csaRejection",
+          "sourceNodeName": "csaReview",
+          "targetNodeName": "cndnRejected"
+        }
+      ],
+      "version": "1"
+    }
+  ]
+}

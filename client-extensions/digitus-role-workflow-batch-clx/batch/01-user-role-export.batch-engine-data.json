@@ -1,0 +1,44 @@
+{
+  "configuration": {
+    "className": "com.liferay.headless.admin.user.dto.v1_0.Role",
+    "parameters": {
+      "containsHeaders": "true",
+      "createStrategy": "UPSERT",
+      "onErrorFail": "false"
+    },
+    "taskItemDelegateName": "DEFAULT"
+  },
+  "items": [
+    {
+      "availableLanguages": [
+        "en-US"
+      ],
+      "description": "",
+      "description_i18n": {},
+      "externalReferenceCode": "CSA Manager",
+      "id": 39523,
+      "name": "CSA Manager",
+      "name_i18n": {
+        "en-US": "CSA Manager"
+      },
+      "rolePermissions": [],
+      "roleType": "regular"
+    },
+    {
+      "availableLanguages": [
+        "en-US"
+      ],
+      "description": "",
+      "description_i18n": {},
+      "externalReferenceCode": "Finance 1",
+      "id": 39525,
+      "name": "Finance 1",
+      "name_i18n": {
+        "en-US": "Finance 1"
+      },
+      "rolePermissions": [],
+      "roleType": "regular"
+    }
+
+  ]
+}

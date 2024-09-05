@@ -1,0 +1,19 @@
+assemble:
+    - from: batch
+      into: batch
+digitus-roles-wf-object-batch:
+    name: Digitus Roles Workflow Batch
+    oAuthApplicationHeadlessServer: digitus-roles-wf-batch-oauth-application-headless-server
+    type: batch
+digitus-roles-wf-batch-oauth-application-headless-server:
+    .serviceAddress: localhost:8080
+    .serviceScheme: http
+    name: Digitus Roles WF Batch OAuth Application Headless Server
+    scopes:
+        - Liferay.Headless.Admin.List.Type.everything
+        - Liferay.Headless.Admin.User.everything
+        - Liferay.Headless.Admin.Workflow.everything
+        - Liferay.Headless.Batch.Engine.everything
+        - Liferay.Notification.REST.everything
+        - Liferay.Object.Admin.REST.everything
+    type: oAuthApplicationHeadlessServer
