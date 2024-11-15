@@ -1,0 +1,4 @@
+Bundle-Name: breadcrumb-folder-mapping-web
+Bundle-SymbolicName: com.clsa.staffconnect.breadcrumb.folder.mapping.web
+Bundle-Version: 1.0.0
+Export-Package: com.clsa.staffconnect.breadcrumb.folder.mapping.web.constants

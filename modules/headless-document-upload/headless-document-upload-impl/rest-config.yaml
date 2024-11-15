@@ -1,0 +1,7 @@
+apiDir: "../headless-document-upload-api/src/main/java"
+apiPackagePath: "com.clsa.staffconnect.headless.document.upload"
+application:
+    baseURI: "/headless-document-upload"
+    className: "HeadlessDocumentUploadApplication"
+    name: "HeadlessDocumentUpload"
+author: "Hitesh Nayak"

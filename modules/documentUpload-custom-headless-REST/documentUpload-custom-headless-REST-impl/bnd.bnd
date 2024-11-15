@@ -1,0 +1,3 @@
+Bundle-Name: documentUpload-custom-headless-REST-impl
+Bundle-SymbolicName: com.clsa.document.upload.custom.headless.impl
+Bundle-Version: 1.0.0

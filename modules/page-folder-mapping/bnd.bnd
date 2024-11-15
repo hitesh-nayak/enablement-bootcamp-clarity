@@ -1,0 +1,7 @@
+Bundle-Name: page-folder-mapping
+Bundle-SymbolicName: page.folder.mapping
+Bundle-Version: 1.0.0
+Export-Package: com.clsa.mapping.constants
+Provide-Capability:\
+	liferay.language.resources;\
+		resource.bundle.base.name="content.Language"

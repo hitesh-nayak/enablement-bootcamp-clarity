@@ -1,0 +1,3 @@
+Bundle-Name: headless-document-upload-impl
+Bundle-SymbolicName: com.clsa.staffconnect.headless.document.upload.impl
+Bundle-Version: 1.0.0

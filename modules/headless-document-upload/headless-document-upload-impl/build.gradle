@@ -1,0 +1,7 @@
+dependencies {
+	api project(":modules:headless-document-upload:headless-document-upload-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
+
+group = "com.clsa.staffconnect.headless.document.upload"

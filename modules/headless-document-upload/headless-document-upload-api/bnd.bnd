@@ -1,0 +1,7 @@
+Bundle-Name: headless-document-upload-api
+Bundle-SymbolicName: com.clsa.staffconnect.headless.document.upload.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.clsa.staffconnect.headless.document.upload.dto.v1_0,\
+	com.clsa.staffconnect.headless.document.upload.resource.v1_0,\
+    com.clsa.staffconnect.headless.document.upload.util

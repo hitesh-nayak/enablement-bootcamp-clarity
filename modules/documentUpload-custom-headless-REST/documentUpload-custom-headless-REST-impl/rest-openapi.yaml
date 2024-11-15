@@ -1,0 +1,106 @@
+info:
+    description: "DocumentUploadCustomHeadlessREST REST API"
+    license:
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    title: "DocumentUploadCustomHeadlessREST"
+    version: v1.0
+openapi: 3.0.1
+
+components:
+    schemas:
+        ApiResponse:
+            type: object
+            properties:
+                status:
+                    type: string
+
+paths:
+
+    "/uploadDocument":
+        post:
+            operationId: postUploadDocument
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            properties:
+                                breadcrumb:
+                                    type: string
+                                file:
+                                    format: binary
+                                    type: string
+                            type: object
+            responses:
+                200:
+                    description: Success!
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
+
+                        application/xml:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
+            tags: [UploadDocument]
+
+        put:
+            operationId: updateUploadDocument
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            properties:
+                                breadcrumb:
+                                    type: string
+                                file:
+                                    format: binary
+                                    type: string
+                            type: object
+            responses:
+                200:
+                    description: Success!
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
+
+                        application/xml:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
+            tags: [UpdateDocument]
+
+        delete:
+            operationId: deleteUploadDocument
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            properties:
+                                breadcrumb:
+                                    type: string
+                                file:
+                                    format: binary
+                                    type: string
+                            type: object
+            responses:
+                200:
+                    description: Success!
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
+
+                        application/xml:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
+                
+
+
+
+
+
+
+
+
+            tags: [DeleteDocument]

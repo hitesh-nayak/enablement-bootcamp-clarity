@@ -1,0 +1,9 @@
+apiDir: "../documentUpload-custom-headless-REST-api/src/main/java"
+apiPackagePath: "com.clsa.document.upload.custom.headless"
+application:
+    baseURI: "/documentUpload-custom-headless-REST"
+    className: "DocumentUploadCustomHeadlessRESTApplication"
+    name: "DocumentUploadCustomHeadlessREST"
+author: "me"
+clientDir: "../documentUpload-custom-headless-REST-client/src/main/java"
+testDir: "../documentUpload-custom-headless-REST-test/src/testIntegration/java"

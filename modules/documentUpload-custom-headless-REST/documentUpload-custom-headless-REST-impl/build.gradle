@@ -1,0 +1,10 @@
+dependencies {
+	api project(":modules:documentUpload-custom-headless-REST:documentUpload-custom-headless-REST-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+	compileOnly group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+
+//	restBuilder group: "com.liferay", name: "com.liferay.portal.tools.rest.builder", version: "1.0.222"
+}
+
+group = "com.clsa.document.upload.custom.headless"

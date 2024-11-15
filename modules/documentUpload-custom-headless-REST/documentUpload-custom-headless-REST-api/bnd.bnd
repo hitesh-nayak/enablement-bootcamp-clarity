@@ -1,0 +1,5 @@
+Bundle-Name: documentUpload-custom-headless-REST-api
+Bundle-SymbolicName: com.clsa.document.upload.custom.headless.api
+Bundle-Version: 1.0.0
+Export-Package: com.clsa.document.upload.custom.headless.dto.v1_0,\
+com.clsa.document.upload.custom.headless.resource.v1_0
